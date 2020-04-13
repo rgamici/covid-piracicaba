@@ -1,4 +1,4 @@
-## Data   Tipo   Número   Sexo   Idade  ## Comentários
+## Data   Tipo   Número   Sexo   Idade  ## Observações
 20200325   P       1       M      77
 20200325   P       1       M      22
 20200326   P       1       M      56
