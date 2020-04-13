@@ -1,0 +1,25 @@
+## Data   Tipo   Número   Sexo   Idade  ## Comentários
+20200325   P       1       M      77
+20200325   P       1       M      22
+20200326   P       1       M      56
+20200327   P       1       M      43
+20200327   P       1       M      56
+20200329   P       1       F      53
+20200330   P       1       M      76
+20200330   P       1       M      29
+20200330   P       1       F      55
+20200331   P       1       M      36     ## Total: 10 casos
+20200401   P       1       M      65     ## https://www.piranot.com.br/noticias/mundo-noticias/brasil-noticias/estado-brasil-noticias/sao-paulo-brasil-noticias/localidade/piracicaba-e-regiao/piracicaba/11o-caso-de-coronavirus-covid-19-e-confirmado-em-piracicaba/
+20200402   P       1       M      21
+20200403   P       3       -      --     ## FDS, sem dados
+20200406   P       1       -      --     ## Sem dados
+20200406   P       1       M      34     
+20200407   P       1       M      69
+20200407   P       1       M      35 
+20200408   P       1       F      73
+20200408   P       1       M      53
+20200408   P       1       F      47    
+20200409   P       1       M      60
+20200409   P       1       F      56
+20200410   P       1       M      31     ## Total: 25 casos
+20200410   M       1       M      77
