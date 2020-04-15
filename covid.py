@@ -72,7 +72,7 @@ class covid:
                 dia_conv = conv
         return(dias)
 
-    def plot_acc_conf(self, fig=None, add=False):
+    def plot_acc_conf(self, x, y, cor, datas, ylabel, fig=None, add=False):
         # Cria gráfico novo se não quiser sobreescrever
         if fig is None:
             fig = plt.figure()
@@ -82,14 +82,14 @@ class covid:
                 ax = fig.gca().twinx()
             else:
                 ax = fig.gca()
-        #
-        color = 'tab:red'
-        # ax1.set_xlabel('data')
-        ax.set_ylabel('Total de Casos', color=color)
-        ax.scatter(self.dias, self.acc_conf, color=color)
-        ax.tick_params(axis='y', labelcolor=color)
+        # plota dados
+        ax.scatter(x, y, color=cor)
+        # ajusta eixo y
+        ax.set_ylabel(ylabel, color=cor)
+        ax.tick_params(axis='y', labelcolor=cor)
         ax.set_yscale('log')
         ax.set_ylim(bottom=0.8)
+        # altera valores marcados
         _, max_value = ax.get_ylim()
         max_value = int(math.ceil(math.log(max_value, 10)))
         y_ticks = []
@@ -99,22 +99,20 @@ class covid:
         ax.yaxis.set_major_locator(ticker.FixedLocator(y_ticks))
         ax.yaxis.set_major_formatter(
             ticker.FuncFormatter(lambda y, _: '{:g}'.format(y)))
-
+        # ajusta eixo x
         str_data = []
-        for data in self.data:
+        for data in datas:
             str_data.append(data[6:] + "/" + data[4:6])
-        ax.set_xticks(self.dias)
+        ax.set_xticks(x)
         ax.set_xticklabels(str_data, rotation=90)
-        #
+        # evita que dados fiquem atrás de outros
         ax.set_zorder(10)
         ax.patch.set_visible(False)
-        # plt.title("Casos de COVID-19 em " + self.nome)
         # adicionar nota sobre último dia
-        # ax.set_title("Total de Casos de Coronavírus em " + self.nome)
         fig.tight_layout()  # otherwise the right y-label is slightly clipped
         return(fig)
 
-    def plot_conf(self, fig=None, add=False):
+    def plot_conf(self, x, y, cor, datas, ylabel, fig=None, add=False):
         # Cria gráfico novo se não quiser sobreescrever
         if fig is None:
             fig = plt.figure()
@@ -125,18 +123,17 @@ class covid:
             else:
                 ax = fig.gca()
         #
-        color = 'tab:blue'
-        ax.set_ylabel('Novos Casos', color=color)
-        ax.bar(self.dias, self.conf, color=color)
-        ax.tick_params(axis='y', labelcolor=color)
+        ax.set_ylabel(ylabel, color=cor)
+        ax.bar(x, y, color=cor)
+        ax.tick_params(axis='y', labelcolor=cor)
         ax.yaxis.set_major_locator(ticker.MaxNLocator(integer=True))
         if add:
             ax.set_ylim(0, max(self.conf)*3)
         else:
             str_data = []
-            for data in self.data:
+            for data in datas:
                 str_data.append(data[6:] + "/" + data[4:6])
-            ax.set_xticks(self.dias)
+            ax.set_xticks(x)
             ax.set_xticklabels(str_data, rotation=90)
             # adicionar nota sobre último dia
         fig.tight_layout()  # otherwise the right y-label is slightly clipped
@@ -184,6 +181,32 @@ class covid:
                   linestyles='dashed', color='tab:grey', linewidth=1)
         ax.set_xlim(left=-1)
 
+    def atualiza_graf(self):
+        # gráfico de novos casos
+        fig_conf = self.plot_conf(self.dias, self.conf, 'tab:blue',
+                                  self.data, 'Novos Casos por Dia')
+        fig_add_title(fig_conf, "Novos Casos de Coronavírus em " + self.nome)
+        fig_conf.savefig("img/" + self.data[-1] + "-"
+                         + self.nome + '-novoscasos.png')
+        # gráfico do total de casos
+        fig_acc = self.plot_acc_conf(self.dias, self.acc_conf,
+                                     'tab:red', self.data, "Total de Casos")
+        fig_add_title(fig_acc, "Total de Casos de Coronavírus em " + self.nome)
+        fig_acc.savefig("img/" + self.data[-1] + "-"
+                        + self.nome + '-totalcasos.png')
+        # gráfico com novos casos confirmados e o total acumulado
+        fig_both = self.plot_acc_conf(self.dias, self.acc_conf,
+                                      'tab:red', self.data, "Total de Casos")
+        self.marcar_datas(fig_both)
+        self.plot_conf(self.dias, self.conf, 'tab:blue', self.data,
+                       'Novos Casos por Dia', fig_both, True)
+        fig_add_title(fig_both, "Casos Confirmados de Coronavírus em "
+                      + self.nome)
+        fig_both.savefig("img/" + self.data[-1] + "-"
+                         + self.nome + '-casosconfirmados.png')
+        #
+        plt.show()
+
 
 def fig_add_title(fig, title):
     fig.gca().set_title(title)
@@ -192,18 +215,4 @@ def fig_add_title(fig, title):
 
 if __name__ == '__main__':
     pir = covid("Piracicaba.txt")
-    fig_conf = pir.plot_conf()
-    fig_add_title(fig_conf, "Novos Casos de Coronavírus em " + pir.nome)
-    fig_conf.savefig("img/" + pir.data[-1] + "-"
-                     + pir.nome + '-novoscasos.png')
-    fig_acc = pir.plot_acc_conf()
-    fig_add_title(fig_acc, "Total de Casos de Coronavírus em " + pir.nome)
-    fig_acc.savefig("img/" + pir.data[-1] + "-"
-                    + pir.nome + '-totalcasos.png')
-    fig_both = pir.plot_acc_conf()
-    pir.marcar_datas(fig_both)
-    pir.plot_conf(fig_both, True)
-    fig_add_title(fig_both, "Casos Confirmados de Coronavírus em " + pir.nome)
-    fig_both.savefig("img/" + pir.data[-1] + "-"
-                     + pir.nome + '-casosconfirmados.png')
-    plt.show()
+    pir.atualiza_graf()
