@@ -197,7 +197,7 @@ class covid:
         ax.set_xticks(self.datas_marcadas_i)
         ax.set_xticklabels(self.datas_marcadas, rotation=90)
 
-    def atualiza_graf(self, save=False, show=True, atualiza_texto=False):
+    def atualiza_graf(self, save=False, show=False, atualiza_texto=False):
         # GRÁFICOS DE CASOS CONFIRMADOS
         # gráfico de novos casos
         fig_conf = self.plot_conf(self.dias, self.conf, 'tab:blue',
@@ -299,6 +299,6 @@ def fig_add_title(fig, title):
 
 if __name__ == '__main__':
     pir = covid("Piracicaba.txt")
-    # pir.atualiza_graf()            # Mostra figuras mas não salva
-    # pir.atualiza_graf(True, False)  # Salva figuras e não mostra
-    pir.atualiza_graf(True, False, True)  # Salva figuras (com e sem data)
+    # pir.atualiza_graf(show=True)  # Mostra figuras mas não salva
+    # pir.atualiza_graf(save=True)  # Salva figuras com data e não mostra
+    pir.atualiza_graf(atualiza_texto=True)  # Salva figuras sem data
