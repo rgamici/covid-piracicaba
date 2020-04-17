@@ -10,6 +10,8 @@ import re
 import datetime
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
+import matplotlib.patches as mpatches
+import matplotlib.lines as mlines
 import math
 
 
@@ -401,6 +403,14 @@ class Covid:
         # ### ajustes e título
         self.ajusta_eixo_x(fig_all, self.dias + self.dias_mort_corr,
                            self.data + self.data_mort)
+        handles = [mlines.Line2D([], [], color='tab:red', marker="o",
+                                 linestyle="None", label="Total de Casos"),
+                   mlines.Line2D([], [], color='black', marker="o",
+                                 linestyle="None", label="Total de Mortes"),
+                   mpatches.Patch(color='tab:blue', label="Novos Casos"),
+                   mpatches.Patch(color='tab:orange', label="Novas Mortes")]
+        ax = fig_all.gca()
+        ax.legend(handles=handles, loc="upper left")
         fig_add_title(fig_all, "Casos Confirmados e Mortes por Coronavírus em "
                       + self.nome)
         # salva figuras
@@ -439,9 +449,9 @@ def fig_add_title(fig, title):
 
 if __name__ == '__main__':
     pir = Covid("Piracicaba.txt")
-    # pir.atualiza_graf(show=True)  # Mostra figuras mas não salva
+    pir.atualiza_graf(show=True)  # Mostra figuras mas não salva
     # pir.atualiza_graf(save=True)  # Salva figuras com data e não mostra
     # pir.atualiza_graf(atualiza_texto=True)  # Salva figuras sem data
-    pir.atualiza_graf(save=True, atualiza_texto=True, show=False)
-    camp = Covid("Campinas.txt")
-    camp.atualiza_graf(save=True, atualiza_texto=True, show=False)
+    # pir.atualiza_graf(save=True, atualiza_texto=True, show=False)
+    # camp = Covid("Campinas.txt")
+    # camp.atualiza_graf(save=True, atualiza_texto=True, show=False)
