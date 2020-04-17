@@ -26,9 +26,6 @@ class Covid:
         # processa arquivo de entrada
         [self.data, self.conf] = self.scrap("P")
         [self.data_mort, self.mortes] = self.scrap("M")
-        # calcula os números acumulados
-        self.acc_conf = self.acumulados(self.data, self.conf)
-        self.acc_mort = self.acumulados(self.data_mort, self.mortes)
         # converte a lista de datas em números, começando por 0 para graficos
         self.dias = self.dias_corridos(self.data)
         self.dias_mort = self.dias_corridos(self.data_mort)
@@ -37,8 +34,11 @@ class Covid:
         self.diff_morte = abs((
             datetime.datetime.strptime(self.data_mort[0], "%Y%m%d")
             - datetime.datetime.strptime(self.data[0], "%Y%m%d")).days)
-        self.datas_marcadas_i = []
-        self.datas_marcadas = []
+        self.completa_dados()  # preenche lacunas nos dados de mortes
+        # calcula os números acumulados
+        self.acc_conf = self.acumulados(self.data, self.conf)
+        self.acc_mort = self.acumulados(self.data_mort, self.mortes)
+        self.limpa_datas_marcadas()
 
     def scrap(self, mark):
         """ Processa o arquivo de entrada para obter os dados consolidados
@@ -65,6 +65,38 @@ class Covid:
                 data.append(match[0])
                 conf.append(int(match[1]))
         return(data, conf)
+
+    def completa_dados(self):
+        """ Adiciona valores 0 para datas não reportadas
+
+        Essa função evita que entradas reportadando 0 mortes sejam inseridas
+        nos arquivos de entrada e mantendo-o o menos poluído.
+        **Lembrete**: Se não há dados referentes a alguma data é porque não
+        foi reportado nada, o que ocorre nos fins de semana.
+        Para casos confirmados, deve-se inserir uma entrada com 0 casos novos
+        para indicar que não houve novos casos reportados.
+        for data in range(data[0], max(data[-1], conf[-1]), 1):
+        """
+        dias_completo = []
+        data_completo = []
+        mort_completo = []
+        primeiro_dia = datetime.datetime.strptime(self.data_mort[0],
+                                                  "%Y%m%d")
+        um_dia = datetime.timedelta(days=1)
+        for i in range(max(self.dias_mort[-1], self.dias[-1] - self.diff_morte)
+                       + 1):
+            dias_completo.append(i)
+            if i in self.dias_mort:
+                index = self.dias_mort.index(i)
+                data_completo.append(self.data_mort[index])
+                mort_completo.append(self.mortes[index])
+            else:
+                data_completo.append((primeiro_dia
+                                      + i * um_dia).strftime("%Y%m%d"))
+                mort_completo.append(0)
+        self.dias_mort = dias_completo
+        self.data_mort = data_completo
+        self.mortes = mort_completo
 
     def acumulados(self, data, conf):
         """ Calcula o total acumulado dos dados
@@ -279,8 +311,15 @@ class Covid:
         # ajusta eixo x
         ax = fig.gca()
         ax.set_xlim(min(x) - 1, max(x) + 1)
-        ax.set_xticks(self.datas_marcadas_i)
-        ax.set_xticklabels(self.datas_marcadas, rotation=90)
+        unicos_i = []
+        unicos = []
+        for i in self.datas_marcadas_i:
+            if i not in unicos_i:
+                index = self.datas_marcadas_i.index(i)
+                unicos_i.append(self.datas_marcadas_i[index])
+                unicos.append(self.datas_marcadas[index])
+        ax.set_xticks(unicos_i)
+        ax.set_xticklabels(unicos, rotation=90)
 
     def atualiza_graf(self, save=False, show=False, atualiza_texto=False):
         """ Gera todos os gráficos e mostra/salva-os.
@@ -402,4 +441,7 @@ if __name__ == '__main__':
     pir = Covid("Piracicaba.txt")
     # pir.atualiza_graf(show=True)  # Mostra figuras mas não salva
     # pir.atualiza_graf(save=True)  # Salva figuras com data e não mostra
-    pir.atualiza_graf(atualiza_texto=True)  # Salva figuras sem data
+    # pir.atualiza_graf(atualiza_texto=True)  # Salva figuras sem data
+    pir.atualiza_graf(save=True, atualiza_texto=True, show=False)
+    camp = Covid("Campinas.txt")
+    camp.atualiza_graf(save=True, atualiza_texto=True, show=False)
