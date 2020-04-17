@@ -1,6 +1,6 @@
 # COVID-19 em Piracicaba
 
-![conf](img/Piracicaba.png)
+![COVID-Piracicaba](img/Piracicaba.png)
 
 ## Dados
 
@@ -12,6 +12,13 @@ Os dados extraídos são colocados em um arquivo com a seguinte formatação
 
 O campo `Tipo` é usado para marcar casos confirmados (`P`) ou óbitos (`M`).
 Quando não há informações sobre o paciente, os campos `Sexo` e `Idade` são marcados com `--`.
+
+Caso seja reportado que não houve novos casos confirmados, é preciso incluir uma entrada com contagem `0`.
+Isso é feito para indicar que há informações sobre esse dia e evitar que apareçam lacunas nos dados.
+As lacunas devem indicar que não houve nenhum dado reportado, o que ocorre geralmente em fins de semana.
+
+No caso do número de mortes, não é necessário colocar uma entrada com contagem 0, pois o programa completa essas omissões automaticamente.
+
 
 ## Gráficos
 
@@ -26,3 +33,12 @@ São gerados os seguintes gráficos:
 * Combinação dos novos casos por dia e do total de casos (`casosconfirmados`)
 * Combinação das mortes por dia e do total de mortes (`mortes`)
 * Combinação de todos os 4 tipos de dados (arquivo sem sufixo)
+
+
+## Outras Cidades
+
+* Campinas
+
+  Fonte: http://www.campinas.sp.gov.br/noticias.php e https://covid-19.campinas.sp.gov.br/
+  
+  ![COVID-Campinas](img/Campinas.png)
