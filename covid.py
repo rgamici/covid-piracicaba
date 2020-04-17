@@ -13,8 +13,14 @@ import matplotlib.ticker as ticker
 import math
 
 
-class covid:
+class Covid:
     def __init__(self, nome_arquivo):
+        """
+        Parametros:
+        -----------
+        nome_arquivo: str
+            nome do arquivo com os dados de entrada
+        """
         self.arquivo = nome_arquivo
         self.nome = nome_arquivo[:-4]
         # processa arquivo de entrada
@@ -35,6 +41,13 @@ class covid:
         self.datas_marcadas = []
 
     def scrap(self, mark):
+        """ Processa o arquivo de entrada para obter os dados consolidados
+        Parametros:
+        -----------
+        mark: str
+            Qual tipo de dado deve ser buscado.
+            Tipos usados atualmente `P` para novos casos e `M` para mortes.
+        """
         data = []
         conf = []
         re_pad = re.compile("([0-9]{8}) +" + mark + " +([0-9]+).*")
@@ -54,6 +67,12 @@ class covid:
         return(data, conf)
 
     def acumulados(self, data, conf):
+        """ Calcula o total acumulado dos dados
+        Parametros:
+        -----------
+        data: lista de dias
+        conf: lista de casos
+        """
         dia = data[0]
         acc = [0]
         for i in range(len(data)):
@@ -64,6 +83,11 @@ class covid:
         return(acc)
 
     def dias_corridos(self, data):
+        """ Converte a lista de datas em uma lista de integers
+        Parametros:
+        -----------
+        data: lista de datas
+        """
         dias = [0]
         dia_processado = data[0]
         dia_conv = datetime.datetime.strptime(dia_processado, "%Y%m%d")
@@ -76,6 +100,24 @@ class covid:
         return(dias)
 
     def plot_acc_conf(self, x, y, cor, datas, ylabel, fig=None, add=False):
+        """ Plota o número total de casos
+
+        Se nenhuma figura for especificada, cria uma novas.
+        Se add for True, cria eixos separados para os dados
+
+        Parametros:
+        -----------
+        x: lista de ints
+        y: lista de ints
+        cor: str
+        datas: lista de str
+            Rótulos que serão exibidos no eixo x
+        ylabel: str
+            Texto a ser utilizado no eixo y
+        fig: matplotlib.pyplot.figure
+        add: bool
+            Cria ou não um novo conjunto de eixos para os dados
+        """
         # Cria gráfico novo se não quiser sobreescrever
         if fig is None:
             fig = plt.figure()
@@ -116,6 +158,24 @@ class covid:
         return(fig)
 
     def plot_conf(self, x, y, cor, datas, ylabel, fig=None, add=False):
+        """ Plota o número de novos casos
+
+        Se nenhuma figura for especificada, cria uma novas.
+        Se add for True, cria eixos separados para os dados
+
+        Parametros:
+        -----------
+        x: lista de ints
+        y: lista de ints
+        cor: str
+        datas: lista de str
+            Rótulos que serão exibidos no eixo x
+        ylabel: str
+            Texto a ser utilizado no eixo y
+        fig: matplotlib.pyplot.figure
+        add: bool
+            Cria ou não um novo conjunto de eixos para os dados
+        """
         # Cria gráfico novo se não quiser sobreescrever
         if fig is None:
             fig = plt.figure()
@@ -143,6 +203,24 @@ class covid:
         return(fig)
 
     def marcar_datas(self, fig, x_axis, y_axis, label):
+        """ Adiciona marcações nos dados com certa frequencia
+
+        As marcas são adicionadas no primeiro valor e no último, assim como nos
+        referentes ao primeiro dia de cada mês, e do 15º dia.
+
+        Essa função também adiciona dados nas variáveis `datas_marcadas_i`
+        e `datas_marcadas_i` para o caso de mais de um conjunto de dados ser
+        utilizado, o que fará com que seja necessário ajustar os rótulos no
+        eixo x com a função `ajusta_eixo_x()`.
+
+        Parametros:
+        -----------
+        fig: matplotlib.pyplot.figure
+        x_axis: list of ints
+        y_axis: list of ints
+        label: list of str
+            Rótulos usados nos dados do eixo x
+        """
         ax = fig.gca()
         color = ax.yaxis.label.get_color()
         # definir ticks e posição das linhas relevantes
@@ -187,10 +265,17 @@ class covid:
         ax.set_xlim(left=-1)
 
     def limpa_datas_marcadas(self):
+        """ Reseta as variaveis referentes as datas a serem marcadas"""
         self.datas_marcadas_i = []
         self.datas_marcadas = []
 
     def ajusta_eixo_x(self, fig, x, datas):
+        """ Ajusta a escala e os ticks a serem exibidos
+
+        Essa função precisa ser executada caso o segundo conjunto de dados
+        contenha mais dados do que o originalmente plotado.
+        Ela também adiciona os rótulos no eixo x para todas as marcações.
+        """
         # ajusta eixo x
         ax = fig.gca()
         ax.set_xlim(min(x) - 1, max(x) + 1)
@@ -198,6 +283,21 @@ class covid:
         ax.set_xticklabels(self.datas_marcadas, rotation=90)
 
     def atualiza_graf(self, save=False, show=False, atualiza_texto=False):
+        """ Gera todos os gráficos e mostra/salva-os.
+
+        Parametros:
+        -----------
+        save: bool
+            Flag para indicar se os arquivos com as datas nos nomes devem
+            ser salvos ou não.
+        show: bool
+            Flag para indicar se os gráficos devem ser exibidos ou não.
+        atualiza_texto: bool
+            Flag para indicar se os arquivos **sem** as datas nos nomes devem
+            ser salvos ou não.
+            Esse arquivos são referenciados pelas páginas, que apontam para os
+            mais recentes.
+        """
         # GRÁFICOS DE CASOS CONFIRMADOS
         # gráfico de novos casos
         fig_conf = self.plot_conf(self.dias, self.conf, 'tab:blue',
@@ -293,12 +393,13 @@ class covid:
 
 
 def fig_add_title(fig, title):
+    """ Adiciona um título a figura e ajusta o gráfico na janela"""
     fig.gca().set_title(title)
     fig.tight_layout()  # otherwise the right y-label is slightly clipped
 
 
 if __name__ == '__main__':
-    pir = covid("Piracicaba.txt")
+    pir = Covid("Piracicaba.txt")
     # pir.atualiza_graf(show=True)  # Mostra figuras mas não salva
     # pir.atualiza_graf(save=True)  # Salva figuras com data e não mostra
     pir.atualiza_graf(atualiza_texto=True)  # Salva figuras sem data
