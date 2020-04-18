@@ -449,9 +449,9 @@ def fig_add_title(fig, title):
 
 if __name__ == '__main__':
     pir = Covid("Piracicaba.txt")
-    pir.atualiza_graf(show=True)  # Mostra figuras mas não salva
+    # pir.atualiza_graf(show=True)  # Mostra figuras mas não salva
     # pir.atualiza_graf(save=True)  # Salva figuras com data e não mostra
     # pir.atualiza_graf(atualiza_texto=True)  # Salva figuras sem data
-    # pir.atualiza_graf(save=True, atualiza_texto=True, show=False)
+    pir.atualiza_graf(save=True, atualiza_texto=True, show=False)
     # camp = Covid("Campinas.txt")
     # camp.atualiza_graf(save=True, atualiza_texto=True, show=False)
