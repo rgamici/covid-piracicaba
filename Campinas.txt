@@ -15,6 +15,7 @@
 20200328   M       1       F      71
 20200330   M       1       M      86
 20200330   M       1       M      62
+20200330   M       1       M      63    ## pub. 20200420 
 20200330   P      13      -      --    ## Sem dados nos dias 28 e 29
 20200331   P       4       -      --  ## noticia: 3 casos, mas eram 32 e chegaram em 36
 20200331   M       1       F      91    
@@ -33,7 +34,7 @@
 20200415   P       6       -      --
 20200416   P      14       -      --
 20200416   M       1       F      90
-20200416   M       1       F      71	## 7 mortes (igual a contagem)
-20200417   P      11       -      --    ## 163 casos (igual a contagem)
-
+20200416   M       1       F      71	## 8 mortes (igual a contagem)
+20200417   P      11       -      --
+20200420   P      14       -      --    ## 177 casos (igual a contagem)
 
