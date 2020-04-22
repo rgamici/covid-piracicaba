@@ -34,7 +34,8 @@
 20200415   P       6       -      --
 20200416   P      14       -      --
 20200416   M       1       F      90
-20200416   M       1       F      71	## 8 mortes (igual a contagem)
+20200416   M       1       F      71
 20200417   P      11       -      --
-20200420   P      14       -      --    ## 177 casos (igual a contagem)
-
+20200420   P      14       -      --    
+20200422   P      22       -      --    ## 199 casos (igual a contagem)
+20200422   M       2       -      --    ## 10 mortes (igual a contagem)
