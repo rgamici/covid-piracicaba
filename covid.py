@@ -30,10 +30,14 @@ class Covid:
         """
         if nome_arquivo != "":
             self.arquivo = nome_arquivo
+        else:
+            self.arquivo = None
         if nome == "":
             self.nome = nome_arquivo[:-4]
+            self.fonte = "Fonte: Prefeitura de " + self.nome
         else:
             self.nome = nome
+            self.fonte = "Fonte: SEADE/SP"
         if nome_arquivo == "":
             # processa dados da SEADE
             (self.data, self.conf,
@@ -365,32 +369,27 @@ class Covid:
         ax.set_xticks(unicos_i)
         ax.set_xticklabels(unicos, rotation=90)
 
-    def atualiza_graf(self, save=False, show=False, atualiza_texto=False):
-        """ Gera todos os gráficos e mostra/salva-os.
+    def fig_add_fonte(self, fig,):
+        """ Adiciona a fonte dos dados no canto"""
+        fig.text(1, 0, self.fonte, fontsize=7, horizontalalignment='right',
+                 verticalalignment='bottom')
+        fig.tight_layout()  # otherwise the right y-label is slightly clipped
 
-        Parametros:
-        -----------
-        save: bool
-            Flag para indicar se os arquivos com as datas nos nomes devem
-            ser salvos ou não.
-        show: bool
-            Flag para indicar se os gráficos devem ser exibidos ou não.
-        atualiza_texto: bool
-            Flag para indicar se os arquivos **sem** as datas nos nomes devem
-            ser salvos ou não.
-            Esse arquivos são referenciados pelas páginas, que apontam para os
-            mais recentes.
-        """
-        # GRÁFICOS DE CASOS CONFIRMADOS
-        # gráfico de novos casos
+    def graf_conf(self):
         fig_conf = self.plot_conf(self.dias, self.conf, 'tab:blue',
                                   self.data, 'Novos Casos por Dia')
         fig_add_title(fig_conf, "Novos Casos de Coronavírus em " + self.nome)
-        # gráfico do total de casos
+        self.fig_add_fonte(fig_conf)
+        return fig_conf
+
+    def graf_conf_acc(self):
         fig_acc = self.plot_acc_conf(self.dias, self.acc_conf,
                                      'tab:red', self.data, "Total de Casos")
         fig_add_title(fig_acc, "Total de Casos de Coronavírus em " + self.nome)
-        # gráfico com novos casos confirmados e o total acumulado
+        self.fig_add_fonte(fig_acc)
+        return(fig_acc)
+
+    def graf_conf_both(self):
         fig_both = self.plot_acc_conf(self.dias, self.acc_conf,
                                       'tab:red', self.data, "Total de Casos")
         self.marcar_datas(fig_both, self.dias, self.acc_conf, self.data)
@@ -398,19 +397,27 @@ class Covid:
                        'Novos Casos por Dia', fig_both, True)
         fig_add_title(fig_both, "Casos Confirmados de Coronavírus em "
                       + self.nome)
-        # GRÁFICOS COM MORTES
-        # gráfico com o número de mortes por dia
+        self.fig_add_fonte(fig_both)
+        return(fig_both)
+
+    def graf_mort(self):
         fig_mort = self.plot_conf(self.dias_mort, self.mortes, 'tab:orange',
                                   self.data_mort, 'Mortes por dia')
         fig_add_title(fig_mort, "Número de Mortes por Coronavírus em "
                       + self.nome)
-        # gráfico com o total de mortes
+        self.fig_add_fonte(fig_mort)
+        return(fig_mort)
+
+    def graf_mort_acc(self):
         fig_acc_mort = self.plot_acc_conf(self.dias_mort, self.acc_mort,
                                           'black', self.data_mort,
                                           "Total de Mortes")
         fig_add_title(fig_acc_mort, "Total de Mortes por Coronavírus em "
                       + self.nome)
-        # gráfico com novos casos confirmados e o total acumulado
+        self.fig_add_fonte(fig_acc_mort)
+        return(fig_acc_mort)
+
+    def graf_mort_both(self):
         fig_both_mort = self.plot_acc_conf(self.dias_mort, self.acc_mort,
                                            'black', self.data_mort,
                                            "Total de Mortes")
@@ -420,7 +427,10 @@ class Covid:
                        'Novas Mortes por Dia', fig_both_mort, True)
         fig_add_title(fig_both_mort, "Mortes por Coronavírus em "
                       + self.nome)
-        # GRÁFICO COM CASOS CONFIRMADOS E MORTES
+        self.fig_add_fonte(fig_both_mort)
+        return(fig_both_mort)
+
+    def graf_all(self):
         # ### desloca eixo x de mortes
         self.dias_mort_corr = []
         for dia in self.dias_mort:
@@ -455,30 +465,70 @@ class Covid:
         ax.legend(handles=handles, loc="upper left")
         fig_add_title(fig_all, "Casos Confirmados e Mortes por Coronavírus em "
                       + self.nome)
+        self.fig_add_fonte(fig_all)
+        return(fig_all)
+
+    def atualiza_graf(self, save=False, show=False, atualiza_texto=False):
+        """ Gera todos os gráficos e mostra/salva-os.
+
+        Parametros:
+        -----------
+        save: bool
+            Flag para indicar se os arquivos com as datas nos nomes devem
+            ser salvos ou não.
+        show: bool
+            Flag para indicar se os gráficos devem ser exibidos ou não.
+        atualiza_texto: bool
+            Flag para indicar se os arquivos **sem** as datas nos nomes devem
+            ser salvos ou não.
+            Esse arquivos são referenciados pelas páginas, que apontam para os
+            mais recentes.
+        """
+        # GRÁFICOS DE CASOS CONFIRMADOS
+        fig_conf = self.graf_conf()  # gráfico de novos casos
+        fig_acc = self.graf_conf_acc()  # gráfico do total de casos
+        fig_both = self.graf_conf_both()  # gráfico com novos casos e total
+        # GRÁFICOS COM MORTES
+        fig_mort = self.graf_mort()  # gráfico com o número de mortes por dia
+        fig_acc_mort = self.graf_mort_acc()  # gráfico com o total de mortes
+        fig_both_mort = self.graf_mort_both()
+        # GRÁFICO COM CASOS CONFIRMADOS E MORTES
+        fig_all = self.graf_all()
         # salva figuras
+        if self.arquivo:
+            sufixo = ""
+        else:
+            sufixo = "-SEADE"
         if save:
             fig_conf.savefig("img/" + self.data[-1] + "-"
-                             + self.nome + '-novoscasos.png')
+                             + self.nome + '-novoscasos' + sufixo + '.png')
             fig_acc.savefig("img/" + self.data[-1] + "-"
-                            + self.nome + '-totalcasos.png')
-            fig_both.savefig("img/" + self.data[-1] + "-"
-                             + self.nome + '-casosconfirmados.png')
+                            + self.nome + '-totalcasos' + sufixo + '.png')
+            fig_both.savefig("img/" + self.data[-1] + "-" + self.nome +
+                             '-casosconfirmados' + sufixo + '.png')
             fig_mort.savefig("img/" + self.data_mort[-1] + "-" + self.nome
-                             + "-novasmortes.png")
+                             + '-novasmortes' + sufixo + '.png')
             fig_acc_mort.savefig("img/" + self.data_mort[-1] + "-" + self.nome
-                                 + "-totalmortes.png")
+                                 + '-totalmortes' + sufixo + '.png')
             fig_both_mort.savefig("img/" + self.data_mort[-1] + "-"
-                                  + self.nome + '-mortes.png')
+                                  + self.nome + '-mortes' + sufixo + '.png')
             data = max(self.data[-1], self.data_mort[-1])
-            fig_all.savefig("img/" + data + "-" + self.nome + '.png')
+            fig_all.savefig("img/" + data + "-" + self.nome + ''
+                            + sufixo + '.png')
         if atualiza_texto:
-            fig_conf.savefig("img/" + self.nome + '-novoscasos.png')
-            fig_acc.savefig("img/" + self.nome + '-totalcasos.png')
-            fig_both.savefig("img/" + self.nome + '-casosconfirmados.png')
-            fig_mort.savefig("img/" + self.nome + "-novasmortes.png")
-            fig_acc_mort.savefig("img/" + self.nome + "-totalmortes.png")
-            fig_both_mort.savefig("img/" + self.nome + '-mortes.png')
-            fig_all.savefig("img/" + self.nome + '.png')
+            fig_conf.savefig("img/" + self.nome + '-novoscasos'
+                             + sufixo + '.png')
+            fig_acc.savefig("img/" + self.nome + '-totalcasos'
+                            + sufixo + '.png')
+            fig_both.savefig("img/" + self.nome + '-casosconfirmados'
+                             + sufixo + '.png')
+            fig_mort.savefig("img/" + self.nome + '-novasmortes'
+                             + sufixo + '.png')
+            fig_acc_mort.savefig("img/" + self.nome + '-totalmortes'
+                                 + sufixo + '.png')
+            fig_both_mort.savefig("img/" + self.nome + '-mortes'
+                                  + sufixo + '.png')
+            fig_all.savefig("img/" + self.nome + sufixo + '.png')
         if show:
             plt.show()
 
@@ -501,12 +551,14 @@ def download_seade():
 
 if __name__ == '__main__':
     pir = Covid("Piracicaba.txt")
-    pir.atualiza_graf(show=True)  # Mostra figuras mas não salva
+    # pir.atualiza_graf(show=True)  # Mostra figuras mas não salva
     # pir.atualiza_graf(save=True)  # Salva figuras com data e não mostra
     # pir.atualiza_graf(atualiza_texto=True)  # Salva figuras sem data
     # pir.atualiza_graf(save=True, atualiza_texto=True, show=False)
     # camp = Covid("Campinas.txt")
     # camp.atualiza_graf(save=True, atualiza_texto=True, show=False)
-    # dados_seade = download_seade()
+    dados_seade = download_seade()
+    pir_seade = Covid(nome="Piracicaba", dados_seade=dados_seade)
+    pir_seade.atualiza_graf(save=True, atualiza_texto=True, show=True)
     # camp_seade = Covid(nome="Campinas", dados_seade=dados_seade)
-    # camp_seade.atualiza_graf(show=True)
+    # camp_seade.atualiza_graf(show=True, save=True, atualiza_texto=True)
