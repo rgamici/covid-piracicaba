@@ -13,22 +13,37 @@ import matplotlib.ticker as ticker
 import matplotlib.patches as mpatches
 import matplotlib.lines as mlines
 import math
+import urllib.request
 
 
 class Covid:
-    def __init__(self, nome_arquivo):
+    def __init__(self, nome_arquivo="", nome="", dados_seade=""):
         """
         Parametros:
         -----------
         nome_arquivo: str
             nome do arquivo com os dados de entrada
+            Se não for fornecido, usa os dados da SEADE
+        nome: str
+            nome da cidade a ser exibido nos gráficos e usado para salvar os
+            arquivos.
         """
-        self.arquivo = nome_arquivo
-        self.nome = nome_arquivo[:-4]
-        # processa arquivo de entrada
-        [self.data, self.conf] = self.scrap("P")
-        [self.data_mort, self.mortes] = self.scrap("M")
-        # converte a lista de datas em números, começando por 0 para graficos
+        if nome_arquivo != "":
+            self.arquivo = nome_arquivo
+        if nome == "":
+            self.nome = nome_arquivo[:-4]
+        else:
+            self.nome = nome
+        if nome_arquivo == "":
+            # processa dados da SEADE
+            (self.data, self.conf,
+             self.data_mort, self.mortes) = self.scrap_seade(dados_seade)
+        else:
+            # processa arquivo de entrada
+            [self.data, self.conf] = self.scrap("P")
+            [self.data_mort, self.mortes] = self.scrap("M")
+        # converte a lista de datas em números,
+        # começando por 0 para graficos
         self.dias = self.dias_corridos(self.data)
         self.dias_mort = self.dias_corridos(self.data_mort)
         # calcula o tempo até a primeira morte,
@@ -68,6 +83,34 @@ class Covid:
                 conf.append(int(match[1]))
         return(data, conf)
 
+    def scrap_seade(self, dados_seade):
+        datas = []
+        conf = []
+        data_mort = []
+        mortes = []
+        acc_conf = 0
+        acc_mort = 0
+        cidade = self.nome.lower()
+        matches = re.findall(cidade + ";.*;", dados_seade)
+        for match in matches:
+            pattern = (cidade +
+                       "; *([0-9NA]+); *([0-9NA]+); *([0-9]+); *([0-9]+)")
+            result = re.search(pattern, match)
+            if result:
+                data = datetime.datetime.strftime(
+                    datetime.datetime.strptime(result[3] + " "
+                                               + result[4] + " 2020",
+                                               "%d %m %Y"), "%Y%m%d")
+                datas.append(data)
+                conf.append(int(result[1]) - acc_conf)
+                acc_conf = int(result[1])
+                if result[2] != "NA":
+                    morte = int(result[2])
+                    data_mort.append(data)
+                    mortes.append(morte - acc_mort)
+                    acc_mort = morte
+        return(datas, conf, data_mort, mortes)
+
     def completa_dados(self):
         """ Adiciona valores 0 para datas não reportadas
 
@@ -77,7 +120,6 @@ class Covid:
         foi reportado nada, o que ocorre nos fins de semana.
         Para casos confirmados, deve-se inserir uma entrada com 0 casos novos
         para indicar que não houve novos casos reportados.
-        for data in range(data[0], max(data[-1], conf[-1]), 1):
         """
         dias_completo = []
         data_completo = []
@@ -447,11 +489,24 @@ def fig_add_title(fig, title):
     fig.tight_layout()  # otherwise the right y-label is slightly clipped
 
 
+def download_seade():
+    """ Obtem dados atualizados do SEADE"""
+    url = ("https://raw.githubusercontent.com/seade-R/dados-covid-sp/"
+           "master/data/dados_covid_sp.csv")
+    response = urllib.request.urlopen(url)
+    data = response.read()      # a `bytes` object
+    text = str(data, 'iso-8859-1')
+    return(text)
+
+
 if __name__ == '__main__':
     pir = Covid("Piracicaba.txt")
-    # pir.atualiza_graf(show=True)  # Mostra figuras mas não salva
+    pir.atualiza_graf(show=True)  # Mostra figuras mas não salva
     # pir.atualiza_graf(save=True)  # Salva figuras com data e não mostra
     # pir.atualiza_graf(atualiza_texto=True)  # Salva figuras sem data
-    pir.atualiza_graf(save=True, atualiza_texto=True, show=False)
+    # pir.atualiza_graf(save=True, atualiza_texto=True, show=False)
     # camp = Covid("Campinas.txt")
     # camp.atualiza_graf(save=True, atualiza_texto=True, show=False)
+    # dados_seade = download_seade()
+    # camp_seade = Covid(nome="Campinas", dados_seade=dados_seade)
+    # camp_seade.atualiza_graf(show=True)
