@@ -72,7 +72,7 @@
 20200424   P       1       F      39
 20200424   P       1       F      37
 20200424   P       1       F      48   ## Total: 70 casos
-20200425   M       1       F      77   ## Total: 5 mortes (igual a contagem)
+20200425   M       1       F      77
 20200425   P       1       M      49
 20200425   P       1       M      78
 20200425   P       1       M      85
@@ -83,4 +83,14 @@
 20200425   P       1       F      73
 20200425   P       1       F      90
 20200425   P       1       F     100   ## Total 80 casos
+20200426   P       1       M      43
+20200426   P       1       M      73
+20200426   P       1       F      82
+20200427   M       1       M      73
+20200427   M       1       M      83
+20200427   M       1       F      83
+20200427   M       1       M      76   ## Total: 9 mortes (igual a contagem)
+20200427   P       1       F      38
+20200427   P       1       F      24
+20200427   P       1       M      62   ## Total 86 casos (contagem 90)
 

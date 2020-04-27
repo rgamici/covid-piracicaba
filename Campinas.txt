@@ -37,8 +37,12 @@
 20200416   M       1       F      90
 20200416   M       1       F      71
 20200417   P      11       -      --
+20200417   M       1       M      82    # divulgado dia 20200425
+20200420   M       1       M      82    # divulgado dia 20200427    
 20200420   P      14       -      --    
 20200422   P      22       -      --
-20200422   M       2       -      --    ## 11 mortes (igual a contagem)
+20200422   M       2       -      --    ## 13 mortes (igual a contagem)
 20200423   P      27       -      --
-20200424   P      16       -      --    ## 242 casos (igual a contagem)
+20200424   P      16       -      -- 
+20200425   P      26       -      --
+20200427   P       6       -      --    ## 274 casos (igual a contagem)
