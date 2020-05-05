@@ -56,5 +56,10 @@
 20200428   M       1       F      58   # divulgado 20204029
 20200429   P      30       -      -- 
 20200430   P      11       -      --   ## Total 347 casos (igual a contagem)
+20200501   M       1       F      50   ## divulgado 20200505
 20200502   M       1       F      88   ## divulgado 20200504 (22 mortes igual)
+20200503   M       1       M      20   ## divulgado 20200505
 20200504   P      56       -      --   ## sem dados no feriado e fds (tot: 403)
+20200505   P      15       -      --   ## Total 418 casos (igual a contagem)
+20200505   M       1       M      56   ## Total 25 mortes (igual a contagem)
+
