@@ -62,4 +62,4 @@
 20200504   P      56       -      --   ## sem dados no feriado e fds (tot: 403)
 20200505   P      15       -      --   ## Total 418 casos (igual a contagem)
 20200505   M       1       M      56   ## Total 25 mortes (igual a contagem)
-
+20200506   P       5       -      --   ## Total 423 casos (igual a contagem)
