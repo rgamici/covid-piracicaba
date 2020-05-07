@@ -105,9 +105,10 @@ class Covid:
                     datetime.datetime.strptime(result[3] + " "
                                                + result[4] + " 2020",
                                                "%d %m %Y"), "%Y%m%d")
-                datas.append(data)
-                conf.append(int(result[1]) - acc_conf)
-                acc_conf = int(result[1])
+                if result[1] != "NA":
+                    datas.append(data)
+                    conf.append(int(result[1]) - acc_conf)
+                    acc_conf = int(result[1])
                 if result[2] != "NA":
                     morte = int(result[2])
                     data_mort.append(data)
@@ -234,7 +235,7 @@ class Covid:
         ax.set_zorder(10)
         ax.patch.set_visible(False)
         # adicionar nota sobre último dia
-        fig.tight_layout()  # otherwise the right y-label is slightly clipped
+        # fig.tight_layout()  # otherwise the right y-label is slightly clipped
         return(fig)
 
     def plot_conf(self, x, y, cor, datas, ylabel, fig=None, add=False):
@@ -279,7 +280,7 @@ class Covid:
             ax.set_xticks(x)
             ax.set_xticklabels(str_data, rotation=90)
             # adicionar nota sobre último dia
-        fig.tight_layout()  # otherwise the right y-label is slightly clipped
+        # fig.tight_layout()  # otherwise the right y-label is slightly clipped
         return(fig)
 
     def marcar_datas(self, fig, x_axis, y_axis, label):
@@ -369,11 +370,11 @@ class Covid:
         ax.set_xticks(unicos_i)
         ax.set_xticklabels(unicos, rotation=90)
 
-    def fig_add_fonte(self, fig,):
+    def fig_add_fonte(self, fig):
         """ Adiciona a fonte dos dados no canto"""
         fig.text(1, 0, self.fonte, fontsize=7, horizontalalignment='right',
                  verticalalignment='bottom')
-        fig.tight_layout()  # otherwise the right y-label is slightly clipped
+        fig.tight_layout()
 
     def graf_conf(self):
         fig_conf = self.plot_conf(self.dias, self.conf, 'tab:blue',
@@ -536,7 +537,7 @@ class Covid:
 def fig_add_title(fig, title):
     """ Adiciona um título a figura e ajusta o gráfico na janela"""
     fig.gca().set_title(title)
-    fig.tight_layout()  # otherwise the right y-label is slightly clipped
+    # fig.tight_layout()  # otherwise the right y-label is slightly clipped
 
 
 def download_seade():
@@ -549,16 +550,26 @@ def download_seade():
     return(text)
 
 
+def plt_seade(cidades):
+    for cidade in cidades:
+        print(cidade)
+        covid = Covid(nome=cidade, dados_seade=dados_seade)
+        fig = covid.graf_all()
+        fig.savefig("img/" + covid.nome + "-SEADE.png")
+
+
 if __name__ == '__main__':
     pir = Covid("Piracicaba.txt")
     # pir.atualiza_graf(show=True)  # Mostra figuras mas não salva
     # pir.atualiza_graf(save=True)  # Salva figuras com data e não mostra
     # pir.atualiza_graf(atualiza_texto=True)  # Salva figuras sem data
     # pir.atualiza_graf(save=True, atualiza_texto=True, show=False)
-    # camp = Covid("Campinas.txt")
+    camp = Covid("Campinas.txt")
     # camp.atualiza_graf(save=True, atualiza_texto=True, show=False)
+    # camp.atualiza_graf(save=False, atualiza_texto=False, show=True)
     dados_seade = download_seade()
-    pir_seade = Covid(nome="Piracicaba", dados_seade=dados_seade)
-    pir_seade.atualiza_graf(save=True, atualiza_texto=True, show=True)
-    # camp_seade = Covid(nome="Campinas", dados_seade=dados_seade)
-    # camp_seade.atualiza_graf(show=True, save=True, atualiza_texto=True)
+    cidades = ["Limeira",
+               "Campinas", "Sao Paulo", "Ribeirao Preto", "Piracicaba",
+               ]
+    plt_seade(cidades)
+    # plt.show()
