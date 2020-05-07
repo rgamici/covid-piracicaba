@@ -63,3 +63,5 @@
 20200505   P      15       -      --   ## Total 418 casos (igual a contagem)
 20200505   M       1       M      56   ## Total 25 mortes (igual a contagem)
 20200506   P       5       -      --   ## Total 423 casos (igual a contagem)
+20200507   P      26       -      --   ## Total 449 casos (igual a contagem)
+

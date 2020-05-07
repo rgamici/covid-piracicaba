@@ -178,11 +178,12 @@
 20200506   P       1       M      83
 20200506   P       1       M      88
 20200506   P       1       F      87
-20200506   P       1       F      04
 20200506   P       1       F      36
 20200506   P       1       F      45
 20200506   P       1       F      78
 20200506   P       2       F      68
 20200506   P       1       F      82
-20200506   P       1       F      93  # Total 177 casos (contagem 181)
+20200506   P       1       F      93
+20200507   P       1       M      30  # Total 177 casos (contagem 181)
+20200507   M       1       M      91  # Total 14 mortes (igual a contagem)
 
