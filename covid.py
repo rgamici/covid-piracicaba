@@ -555,7 +555,7 @@ def plt_seade(cidades):
         print(cidade)
         covid = Covid(nome=cidade, dados_seade=dados_seade)
         fig = covid.graf_all()
-        fig.savefig("img/" + covid.nome + "-SEADE.png")
+        fig.savefig("img/" + covid.nome.replace(' ', '_') + "-SEADE.png")
 
 
 if __name__ == '__main__':

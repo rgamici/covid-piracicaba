@@ -49,9 +49,9 @@ A fundação SEADE disponibiliza os dados referentes a todo o estado de São Pau
 Utilizando o script, é possível plotar os gráficos de qualquer cidade no estado.
 
 ![Piracicaba-SEADE](img/Piracicaba-SEADE.png)
-![São Paulo-SEADE](img/Sao Paulo-SEADE.png)
+![São Paulo-SEADE](img/Sao_Paulo-SEADE.png)
 ![Campinas-SEADE](img/Campinas-SEADE.png)
-![Ribeirão Preto-SEADE](img/Ribeirao Preto-SEADE.png)
+![Ribeirão Preto-SEADE](img/Ribeirao_Preto-SEADE.png)
 ![Limeira-SEADE](img/Limeira-SEADE.png)
 
 
