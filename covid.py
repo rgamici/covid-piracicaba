@@ -8,12 +8,16 @@ Piracicaba e elaborar gráficos de sua evolução.
 
 import re
 import datetime
+import matplotlib
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
 import matplotlib.patches as mpatches
 import matplotlib.lines as mlines
 import math
 import urllib.request
+import numpy as np
+
+matplotlib.rcParams['font.family'] = "monospace"
 
 
 class Covid:
@@ -60,6 +64,8 @@ class Covid:
         self.acc_conf = self.acumulados(self.data, self.conf)
         self.acc_mort = self.acumulados(self.data_mort, self.mortes)
         self.limpa_datas_marcadas()
+        self.det_conf = self.scrap_pessoal("P")
+        self.det_mort = self.scrap_pessoal("M")
 
     def scrap(self, mark):
         """ Processa o arquivo de entrada para obter os dados consolidados
@@ -533,6 +539,126 @@ class Covid:
         if show:
             plt.show()
 
+    def scrap_pessoal(self, marcador):
+        data = []
+        quant = []
+        sexo = []
+        idade = []
+        re_pad = re.compile("([0-9]{8}) +" + marcador + " +([0-9]+) +"
+                            "([MF-]) +([0-9-]+).*")
+        ent = open(self.arquivo, 'r')
+        dados = ent.read()
+        matches = re.findall(re_pad, dados)
+        for match in matches:
+            if data == []:
+                data.append(match[0])
+                quant.append(int(match[1]))
+                sexo.append(match[2])
+                idade.append(int(match[3]))
+                continue
+            if (match[0] == data[-1] and match[2] == sexo[-1]
+                    and match[3] == idade[-1]):
+                quant[-1] += int(match[1])
+            else:
+                data.append(match[0])
+                quant.append(int(match[1]))
+                sexo.append(match[2])
+                if match[3][0] == "-":
+                    idade.append(-1)
+                else:
+                    idade.append(int(match[3]))
+        return({"data": data, "quant": quant, "sexo": sexo, "idade": idade})
+
+    def graf_detalhes(self):
+        idades = np.arange(10)  # mais de 90 na mesma categoria
+        labels = ['-', '0-9', '10-19', '20-29', '30-39', '40-49',
+                  '50-59', '60-69', '70-79', '80-89', '90-']
+        conf_m = [0]*10
+        mort_m = [0]*10
+        recu_m = [0]*10
+        conf_f = [0]*10
+        mort_f = [0]*10
+        recu_f = [0]*10
+        conf_x = [0]*10
+        mort_x = [0]*10
+        recu_x = [0]*10
+        data = datetime.datetime.strptime(self.det_conf["data"][-1], "%Y%m%d")
+        rec = datetime.timedelta(days=14)
+        data_rec = datetime.datetime.strftime(data - rec, "%Y%m%d")
+        for i in range(len(self.det_conf["data"])):
+            idade = self.det_conf["idade"][i] // 10 + 1
+            if idade > 9:
+                idade = 9
+            if self.det_conf["sexo"][i] == "M":
+                conf_m[idade] += self.det_conf["quant"][i]
+                if self.det_conf["data"][i] < data_rec:
+                    recu_m[idade] += self.det_conf["quant"][i]
+            elif self.det_conf["sexo"][i] == "F":
+                conf_f[idade] += self.det_conf["quant"][i]
+                if self.det_conf["data"][i] < data_rec:
+                    recu_f[idade] += self.det_conf["quant"][i]
+            else:
+                conf_x[idade] += self.det_conf["quant"][i]
+                if self.det_conf["data"][i] < data_rec:
+                    recu_x[idade] += self.det_conf["quant"][i]
+        for i in range(len(self.det_mort["data"])):
+            idade = self.det_mort["idade"][i] // 10 + 1
+            if idade > 9:
+                idade = 9
+            if self.det_mort["sexo"][i] == "M":
+                mort_m[idade] += self.det_mort["quant"][i]
+                recu_m[idade] -= self.det_mort["quant"][i]
+            elif self.det_conf["sexo"][i] == "F":
+                mort_f[idade] += self.det_mort["quant"][i]
+                recu_f[idade] -= self.det_mort["quant"][i]
+            else:
+                mort_x[idade] += self.det_mort["quant"][i]
+                recu_x[idade] -= self.det_mort["quant"][i]
+        tot_conf_m = sum(conf_m)
+        tot_conf_f = sum(conf_f)
+        tot_conf_x = sum(conf_x)
+        tot_conf = tot_conf_m + tot_conf_f + tot_conf_x
+        tot_mort_m = sum(mort_m)
+        tot_mort_f = sum(mort_f)
+        tot_mort_x = sum(mort_x)
+        tot_mort = tot_mort_m + tot_mort_f + tot_mort_x
+        tot_recu_m = sum(recu_m)
+        tot_recu_f = sum(recu_f)
+        tot_recu_x = sum(recu_x)
+        tot_recu = tot_recu_m + tot_recu_f + tot_recu_x
+        conf = [0]*10
+        mort = [0]*10
+        recu = [0]*10
+        for i in range(len(conf_m)):
+            conf[i] = conf_m[i] + conf_f[i] + conf_x[i]
+            mort[i] = mort_m[i] + mort_f[i] + mort_x[i]
+            recu[i] = recu_m[i] + recu_f[i] + recu_x[i]
+        fig = plt.figure()
+        ax = fig.subplots()
+        width = .25
+        rects_x = ax.bar(idades - width, conf_x, width,
+                         label="Não identificado", color="orange")
+        rects_m = ax.bar(idades, conf_m, width, label="Homens", color="blue")
+        rects_f = ax.bar(idades + width, conf_f, width,
+                         label="Mulheres", color="red")
+        ax.set_xticks(idades)
+        ax.set_xticklabels(labels, rotation=45)
+        autolabel(ax, rects_m)
+        autolabel(ax, rects_f)
+        autolabel(ax, rects_x)
+        plt.legend()
+
+
+def autolabel(ax, rects):
+    """Attach a text label above each bar in *rects*, displaying its height."""
+    for rect in rects:
+        height = rect.get_height()
+        ax.annotate('{}'.format(height),
+                    xy=(rect.get_x() + rect.get_width() / 2, height),
+                    xytext=(0, 2),  # 3 points vertical offset
+                    textcoords="offset points",
+                    ha='center', va='bottom')
+
 
 def fig_add_title(fig, title):
     """ Adiciona um título a figura e ajusta o gráfico na janela"""
@@ -552,24 +678,29 @@ def download_seade():
 
 def plt_seade(cidades):
     for cidade in cidades:
-        print(cidade)
+        print("Processando dados de " + cidade)
         covid = Covid(nome=cidade, dados_seade=dados_seade)
         fig = covid.graf_all()
         fig.savefig("img/" + covid.nome.replace(' ', '_') + "-SEADE.png")
 
 
 if __name__ == '__main__':
+    print("Processando dados de Piracicaba.")
     pir = Covid("Piracicaba.txt")
+    fig = pir.graf_detalhes()
+    plt.show()
     # pir.atualiza_graf(show=True)  # Mostra figuras mas não salva
     # pir.atualiza_graf(save=True)  # Salva figuras com data e não mostra
     # pir.atualiza_graf(atualiza_texto=True)  # Salva figuras sem data
+    # atualização
     # pir.atualiza_graf(save=True, atualiza_texto=True, show=False)
-    camp = Covid("Campinas.txt")
+    # print("Processando dados de Campinas.")
+    # camp = Covid("Campinas.txt")
     # camp.atualiza_graf(save=True, atualiza_texto=True, show=False)
-    # camp.atualiza_graf(save=False, atualiza_texto=False, show=True)
-    dados_seade = download_seade()
-    cidades = ["Limeira",
-               "Campinas", "Sao Paulo", "Ribeirao Preto", "Piracicaba",
-               ]
-    plt_seade(cidades)
+    # print("Atualizando dados do SEADE.")
+    # dados_seade = download_seade()
+    # cidades = ["Limeira",
+    #            "Campinas", "Sao Paulo", "Ribeirao Preto", "Piracicaba",
+    #            ]
+    # plt_seade(cidades)
     # plt.show()
