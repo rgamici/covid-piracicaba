@@ -66,4 +66,4 @@
 20200507   P      26       -      --   ## Total 449 casos (igual a contagem)
 20200508   M       1       H      76   ## Total 56 mortes (igual a contagem)
 20200508   P      48       -      --   ## Total 497 casos (igual a contagem)
-
+20200509   P      64       -      --   ## Total 561 (portal covid 1500)
