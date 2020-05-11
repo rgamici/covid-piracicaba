@@ -657,11 +657,16 @@ class Covid:
         rects_f = ax.bar(idades + width, conf_f, width,
                          label="Mulheres", color=cor_m)
         ax.set_xticks(idades)
-        ax.set_xticklabels(labels, rotation=45)
+        label_temp = []
+        for i in range(len(conf)):
+            taxa = int(conf[i]/tot_conf * 100)
+            taxa = str(taxa) + "%"
+            label_temp.append(labels[i] + '\n' + taxa)
+        ax.set_xticklabels(label_temp)
         autolabel(ax, rects_m)
         autolabel(ax, rects_f)
         autolabel(ax, rects_x)
-        ax.set_xlabel("Idade")
+        ax.set_xlabel("Idade / Prevalência")
         ax.set_ylabel("Número de casos confirmados")
         tit = "Casos confirmados de Coronavírus em "
         fig_add_title(fig_conf, tit + self.nome)
@@ -676,11 +681,16 @@ class Covid:
         rects_f = ax.bar(idades + width, mort_f, width,
                          label="Mulheres", color=cor_m)
         ax.set_xticks(idades)
-        ax.set_xticklabels(labels, rotation=45)
+        label_temp = []
+        for i in range(len(conf)):
+            taxa = int(mort[i]/tot_conf * 100)
+            taxa = str(taxa) + "%"
+            label_temp.append(labels[i] + '\n' + taxa)
+        ax.set_xticklabels(label_temp)
         autolabel(ax, rects_m)
         autolabel(ax, rects_f)
         autolabel(ax, rects_x)
-        ax.set_xlabel("Idade")
+        ax.set_xlabel("Idade / Prevalência")
         ax.set_ylabel("Número de óbitos")
         tit = "Mortes por Coronavírus em "
         fig_add_title(fig_mort, tit + self.nome)
@@ -695,12 +705,17 @@ class Covid:
         rects_f = ax.bar(idades + width, recu_f, width,
                          label="Mulheres", color=cor_m)
         ax.set_xticks(idades)
-        ax.set_xticklabels(labels, rotation=45)
+        label_temp = []
+        for i in range(len(conf)):
+            taxa = int(recu[i]/tot_conf * 100)
+            taxa = str(taxa) + "%"
+            label_temp.append(labels[i] + '\n' + taxa)
+        ax.set_xticklabels(label_temp)
         autolabel(ax, rects_m)
         autolabel(ax, rects_f)
         autolabel(ax, rects_x)
         ax.set_ylim(bottom=0)
-        ax.set_xlabel("Idade")
+        ax.set_xlabel("Idade / Prevalência")
         ax.set_ylabel("Número de recuperados")
         tit = "Pacientes recuperados de Coronavírus em "
         fig_add_title(fig_recu, tit + self.nome)
@@ -716,12 +731,20 @@ class Covid:
         rects_f = ax.bar(idades + width, mort_m, width,
                          label="Óbitos", color=cor_mort)
         ax.set_xticks(idades)
-        ax.set_xticklabels(labels, rotation=45)
+        label_temp = []
+        for i in range(len(conf)):
+            if conf_m[i] != 0:
+                taxa = int(mort_m[i]/conf_m[i] * 100)
+            else:
+                taxa = 0
+            taxa = str(taxa) + "%"
+            label_temp.append(labels[i] + '\n' + taxa)
+        ax.set_xticklabels(label_temp)
         autolabel(ax, rects_m)
         autolabel(ax, rects_f)
         autolabel(ax, rects_x)
         ax.set_ylim(bottom=0)
-        ax.set_xlabel("Idade")
+        ax.set_xlabel("Idade / Mortalidade")
         ax.set_ylabel("Número de pacientes")
         tit = "Estado de Homens com Coronavírus em "
         fig_add_title(fig_m, tit + self.nome)
@@ -737,12 +760,20 @@ class Covid:
         rects_f = ax.bar(idades + width, mort_f, width,
                          label="Óbitos", color=cor_mort)
         ax.set_xticks(idades)
-        ax.set_xticklabels(labels, rotation=45)
+        label_temp = []
+        for i in range(len(conf)):
+            if conf_f[i] != 0:
+                taxa = int(mort_f[i]/conf_f[i] * 100)
+            else:
+                taxa = 0
+            taxa = str(taxa) + "%"
+            label_temp.append(labels[i] + '\n' + taxa)
+        ax.set_xticklabels(label_temp)
         autolabel(ax, rects_m)
         autolabel(ax, rects_f)
         autolabel(ax, rects_x)
         ax.set_ylim(bottom=0)
-        ax.set_xlabel("Idade")
+        ax.set_xlabel("Idade / Mortalidade")
         ax.set_ylabel("Número de pacientes")
         tit = "Estado de Mulheres com Coronavírus em "
         fig_add_title(fig_f, tit + self.nome)
@@ -758,12 +789,20 @@ class Covid:
         rects_f = ax.bar(idades + width, mort, width,
                          label="Óbitos", color=cor_mort)
         ax.set_xticks(idades)
-        ax.set_xticklabels(labels, rotation=45)
+        label_temp = []
+        for i in range(len(conf)):
+            if conf[i] != 0:
+                taxa = int(mort[i]/conf[i] * 100)
+            else:
+                taxa = 0
+            taxa = str(taxa) + "%"
+            label_temp.append(labels[i] + '\n' + taxa)
+        ax.set_xticklabels(label_temp)
         autolabel(ax, rects_m)
         autolabel(ax, rects_f)
         autolabel(ax, rects_x)
         ax.set_ylim(bottom=0)
-        ax.set_xlabel("Idade")
+        ax.set_xlabel("Idade / Mortalidade")
         ax.set_ylabel("Número de pacientes")
         tit = "Estado de Pacientes com Coronavírus em "
         fig_add_title(fig_t, tit + self.nome)
@@ -821,6 +860,7 @@ if __name__ == '__main__':
     print("Processando dados de Piracicaba.")
     pir = Covid("Piracicaba.txt")
     fig = pir.graf_detalhes(salva=True, mostra=True)
+    plt.show()
     # pir.atualiza_graf(show=True)  # Mostra figuras mas não salva
     # pir.atualiza_graf(save=True)  # Salva figuras com data e não mostra
     # pir.atualiza_graf(atualiza_texto=True)  # Salva figuras sem data
