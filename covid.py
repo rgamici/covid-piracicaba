@@ -64,8 +64,9 @@ class Covid:
         self.acc_conf = self.acumulados(self.data, self.conf)
         self.acc_mort = self.acumulados(self.data_mort, self.mortes)
         self.limpa_datas_marcadas()
-        self.det_conf = self.scrap_pessoal("P")
-        self.det_mort = self.scrap_pessoal("M")
+        if dados_seade == "":
+            self.det_conf = self.scrap_pessoal("P")
+            self.det_mort = self.scrap_pessoal("M")
 
     def scrap(self, mark):
         """ Processa o arquivo de entrada para obter os dados consolidados
@@ -569,26 +570,29 @@ class Covid:
                     idade.append(int(match[3]))
         return({"data": data, "quant": quant, "sexo": sexo, "idade": idade})
 
-    def graf_detalhes(self):
-        idades = np.arange(10)  # mais de 90 na mesma categoria
+    def graf_detalhes(self, mostra=False, salva=False):
+        # initicalização
+        idades = np.arange(11)  # mais de 90 na mesma categoria
         labels = ['-', '0-9', '10-19', '20-29', '30-39', '40-49',
                   '50-59', '60-69', '70-79', '80-89', '90-']
-        conf_m = [0]*10
-        mort_m = [0]*10
-        recu_m = [0]*10
-        conf_f = [0]*10
-        mort_f = [0]*10
-        recu_f = [0]*10
-        conf_x = [0]*10
-        mort_x = [0]*10
-        recu_x = [0]*10
+        conf_m = [0]*11
+        mort_m = [0]*11
+        recu_m = [0]*11
+        conf_f = [0]*11
+        mort_f = [0]*11
+        recu_f = [0]*11
+        conf_x = [0]*11
+        mort_x = [0]*11
+        recu_x = [0]*11
+        # calcula data para recuperados (14 dias)
         data = datetime.datetime.strptime(self.det_conf["data"][-1], "%Y%m%d")
         rec = datetime.timedelta(days=14)
         data_rec = datetime.datetime.strftime(data - rec, "%Y%m%d")
+        # Separa os casos confirmados or sexo e idade
         for i in range(len(self.det_conf["data"])):
             idade = self.det_conf["idade"][i] // 10 + 1
-            if idade > 9:
-                idade = 9
+            if idade > 10:  # mais de 90 anos ficam em um só grupo
+                idade = 10
             if self.det_conf["sexo"][i] == "M":
                 conf_m[idade] += self.det_conf["quant"][i]
                 if self.det_conf["data"][i] < data_rec:
@@ -601,19 +605,21 @@ class Covid:
                 conf_x[idade] += self.det_conf["quant"][i]
                 if self.det_conf["data"][i] < data_rec:
                     recu_x[idade] += self.det_conf["quant"][i]
+        # separa os óbitos por sexo e idade
         for i in range(len(self.det_mort["data"])):
             idade = self.det_mort["idade"][i] // 10 + 1
-            if idade > 9:
-                idade = 9
+            if idade > 10:
+                idade = 10
             if self.det_mort["sexo"][i] == "M":
                 mort_m[idade] += self.det_mort["quant"][i]
                 recu_m[idade] -= self.det_mort["quant"][i]
-            elif self.det_conf["sexo"][i] == "F":
+            elif self.det_mort["sexo"][i] == "F":
                 mort_f[idade] += self.det_mort["quant"][i]
                 recu_f[idade] -= self.det_mort["quant"][i]
             else:
                 mort_x[idade] += self.det_mort["quant"][i]
                 recu_x[idade] -= self.det_mort["quant"][i]
+        # calcula os totais de casos
         tot_conf_m = sum(conf_m)
         tot_conf_f = sum(conf_f)
         tot_conf_x = sum(conf_x)
@@ -626,27 +632,154 @@ class Covid:
         tot_recu_f = sum(recu_f)
         tot_recu_x = sum(recu_x)
         tot_recu = tot_recu_m + tot_recu_f + tot_recu_x
-        conf = [0]*10
-        mort = [0]*10
-        recu = [0]*10
+        # calcula o total por idade
+        conf = [0]*11
+        mort = [0]*11
+        recu = [0]*11
         for i in range(len(conf_m)):
             conf[i] = conf_m[i] + conf_f[i] + conf_x[i]
             mort[i] = mort_m[i] + mort_f[i] + mort_x[i]
             recu[i] = recu_m[i] + recu_f[i] + recu_x[i]
-        fig = plt.figure()
-        ax = fig.subplots()
+        # variáveis para os gráficos
         width = .25
+        cor_h = "blue"
+        cor_m = "red"
+        cor_x = "orange"
+        cor_conf = "tab:red"
+        cor_mort = "black"
+        cor_recu = "tab:green"
+        # plota gráfico de casos confirmados por sexo e idade
+        fig_conf = plt.figure()
+        ax = fig_conf.subplots()
         rects_x = ax.bar(idades - width, conf_x, width,
-                         label="Não identificado", color="orange")
-        rects_m = ax.bar(idades, conf_m, width, label="Homens", color="blue")
+                         label="Não identificado", color=cor_x)
+        rects_m = ax.bar(idades, conf_m, width, label="Homens", color=cor_h)
         rects_f = ax.bar(idades + width, conf_f, width,
-                         label="Mulheres", color="red")
+                         label="Mulheres", color=cor_m)
         ax.set_xticks(idades)
         ax.set_xticklabels(labels, rotation=45)
         autolabel(ax, rects_m)
         autolabel(ax, rects_f)
         autolabel(ax, rects_x)
+        ax.set_xlabel("Idade")
+        ax.set_ylabel("Número de casos confirmados")
+        tit = "Casos confirmados de Coronavírus em "
+        fig_add_title(fig_conf, tit + self.nome)
+        fig_conf.tight_layout()
         plt.legend()
+        # plota gráfico de óbitos por sexo e idade
+        fig_mort = plt.figure()
+        ax = fig_mort.subplots()
+        rects_x = ax.bar(idades - width, mort_x, width,
+                         label="Não identificado", color=cor_x)
+        rects_m = ax.bar(idades, mort_m, width, label="Homens", color=cor_h)
+        rects_f = ax.bar(idades + width, mort_f, width,
+                         label="Mulheres", color=cor_m)
+        ax.set_xticks(idades)
+        ax.set_xticklabels(labels, rotation=45)
+        autolabel(ax, rects_m)
+        autolabel(ax, rects_f)
+        autolabel(ax, rects_x)
+        ax.set_xlabel("Idade")
+        ax.set_ylabel("Número de óbitos")
+        tit = "Mortes por Coronavírus em "
+        fig_add_title(fig_mort, tit + self.nome)
+        fig_mort.tight_layout()
+        plt.legend()
+        # plota gráfico de recuperados por sexo e idade
+        fig_recu = plt.figure()
+        ax = fig_recu.subplots()
+        rects_x = ax.bar(idades - width, recu_x, width,
+                         label="Não identificado", color=cor_x)
+        rects_m = ax.bar(idades, recu_m, width, label="Homens", color=cor_h)
+        rects_f = ax.bar(idades + width, recu_f, width,
+                         label="Mulheres", color=cor_m)
+        ax.set_xticks(idades)
+        ax.set_xticklabels(labels, rotation=45)
+        autolabel(ax, rects_m)
+        autolabel(ax, rects_f)
+        autolabel(ax, rects_x)
+        ax.set_ylim(bottom=0)
+        ax.set_xlabel("Idade")
+        ax.set_ylabel("Número de recuperados")
+        tit = "Pacientes recuperados de Coronavírus em "
+        fig_add_title(fig_recu, tit + self.nome)
+        fig_recu.tight_layout()
+        plt.legend()
+        # plota gráfico de homens por idade
+        fig_m = plt.figure()
+        ax = fig_m.subplots()
+        rects_x = ax.bar(idades - width, conf_m, width,
+                         label="Casos Confirmados", color=cor_conf)
+        rects_m = ax.bar(idades, recu_m, width, label="Recuperados",
+                         color=cor_recu)
+        rects_f = ax.bar(idades + width, mort_m, width,
+                         label="Óbitos", color=cor_mort)
+        ax.set_xticks(idades)
+        ax.set_xticklabels(labels, rotation=45)
+        autolabel(ax, rects_m)
+        autolabel(ax, rects_f)
+        autolabel(ax, rects_x)
+        ax.set_ylim(bottom=0)
+        ax.set_xlabel("Idade")
+        ax.set_ylabel("Número de pacientes")
+        tit = "Estado de Homens com Coronavírus em "
+        fig_add_title(fig_m, tit + self.nome)
+        fig_m.tight_layout()
+        plt.legend()
+        # plota gráfico de mulheres por idade
+        fig_f = plt.figure()
+        ax = fig_f.subplots()
+        rects_x = ax.bar(idades - width, conf_f, width,
+                         label="Casos Confirmados", color=cor_conf)
+        rects_m = ax.bar(idades, recu_f, width, label="Recuperadas",
+                         color=cor_recu)
+        rects_f = ax.bar(idades + width, mort_f, width,
+                         label="Óbitos", color=cor_mort)
+        ax.set_xticks(idades)
+        ax.set_xticklabels(labels, rotation=45)
+        autolabel(ax, rects_m)
+        autolabel(ax, rects_f)
+        autolabel(ax, rects_x)
+        ax.set_ylim(bottom=0)
+        ax.set_xlabel("Idade")
+        ax.set_ylabel("Número de pacientes")
+        tit = "Estado de Mulheres com Coronavírus em "
+        fig_add_title(fig_f, tit + self.nome)
+        fig_f.tight_layout()
+        plt.legend()
+        # plota gráfico por idade
+        fig_t = plt.figure()
+        ax = fig_t.subplots()
+        rects_x = ax.bar(idades - width, conf, width,
+                         label="Casos Confirmados", color=cor_conf)
+        rects_m = ax.bar(idades, recu, width, label="Recuperados",
+                         color=cor_recu)
+        rects_f = ax.bar(idades + width, mort, width,
+                         label="Óbitos", color=cor_mort)
+        ax.set_xticks(idades)
+        ax.set_xticklabels(labels, rotation=45)
+        autolabel(ax, rects_m)
+        autolabel(ax, rects_f)
+        autolabel(ax, rects_x)
+        ax.set_ylim(bottom=0)
+        ax.set_xlabel("Idade")
+        ax.set_ylabel("Número de pacientes")
+        tit = "Estado de Pacientes com Coronavírus em "
+        fig_add_title(fig_t, tit + self.nome)
+        fig_t.tight_layout()
+        plt.legend()
+
+        # Salva e mostra as figuras
+        if salva:
+            fig_conf.savefig("img/" + self.nome + '-det-confirmados.png')
+            fig_mort.savefig("img/" + self.nome + '-det-mortes.png')
+            fig_recu.savefig("img/" + self.nome + '-det-recuperados.png')
+            fig_m.savefig("img/" + self.nome + '-det-homens.png')
+            fig_f.savefig("img/" + self.nome + '-det-mulheres.png')
+            fig_t.savefig("img/" + self.nome + '-det-total.png')
+        if mostra:
+            plt.show()
 
 
 def autolabel(ax, rects):
@@ -687,8 +820,7 @@ def plt_seade(cidades):
 if __name__ == '__main__':
     print("Processando dados de Piracicaba.")
     pir = Covid("Piracicaba.txt")
-    fig = pir.graf_detalhes()
-    plt.show()
+    fig = pir.graf_detalhes(salva=True, mostra=True)
     # pir.atualiza_graf(show=True)  # Mostra figuras mas não salva
     # pir.atualiza_graf(save=True)  # Salva figuras com data e não mostra
     # pir.atualiza_graf(atualiza_texto=True)  # Salva figuras sem data
