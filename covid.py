@@ -683,7 +683,7 @@ class Covid:
         ax.set_xticks(idades)
         label_temp = []
         for i in range(len(conf)):
-            taxa = int(mort[i]/tot_conf * 100)
+            taxa = int(mort[i]/tot_mort * 100)
             taxa = str(taxa) + "%"
             label_temp.append(labels[i] + '\n' + taxa)
         ax.set_xticklabels(label_temp)
@@ -707,7 +707,7 @@ class Covid:
         ax.set_xticks(idades)
         label_temp = []
         for i in range(len(conf)):
-            taxa = int(recu[i]/tot_conf * 100)
+            taxa = int(recu[i]/tot_recu * 100)
             taxa = str(taxa) + "%"
             label_temp.append(labels[i] + '\n' + taxa)
         ax.set_xticklabels(label_temp)
@@ -859,20 +859,16 @@ def plt_seade(cidades):
 if __name__ == '__main__':
     print("Processando dados de Piracicaba.")
     pir = Covid("Piracicaba.txt")
-    fig = pir.graf_detalhes(salva=True, mostra=True)
-    plt.show()
-    # pir.atualiza_graf(show=True)  # Mostra figuras mas não salva
-    # pir.atualiza_graf(save=True)  # Salva figuras com data e não mostra
-    # pir.atualiza_graf(atualiza_texto=True)  # Salva figuras sem data
-    # atualização
-    # pir.atualiza_graf(save=True, atualiza_texto=True, show=False)
-    # print("Processando dados de Campinas.")
-    # camp = Covid("Campinas.txt")
-    # camp.atualiza_graf(save=True, atualiza_texto=True, show=False)
-    # print("Atualizando dados do SEADE.")
-    # dados_seade = download_seade()
-    # cidades = ["Limeira",
-    #            "Campinas", "Sao Paulo", "Ribeirao Preto", "Piracicaba",
-    #            ]
-    # plt_seade(cidades)
+    fig = pir.graf_detalhes(salva=True, mostra=False)
+    pir.atualiza_graf(save=True, atualiza_texto=True, show=False)
+    print("Processando dados de Campinas.")
+    camp = Covid("Campinas.txt")
+    camp.atualiza_graf(save=True, atualiza_texto=True, show=False)
+    print("Atualizando dados do SEADE.")
+    dados_seade = download_seade()
+    cidades = ["Limeira",
+               "Campinas", "Sao Paulo", "Ribeirao Preto", "Piracicaba",
+               ]
+    plt_seade(cidades)
     # plt.show()
+    fig = camp.graf_detalhes(salva=False, mostra=False)
