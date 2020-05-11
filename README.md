@@ -1,6 +1,7 @@
 # COVID-19 em Piracicaba
 
 ![COVID-Piracicaba](img/Piracicaba.png)
+![Detalhes dos pacientes-Piracicaba](img/Piracicaba-det-total.png)
 
 ## Dados
 
@@ -24,14 +25,29 @@ No caso do número de mortes, não é necessário colocar uma entrada com contag
 Para atualizar os gráficos, basta rodar o script `covid.py` e os arquivos na pasta `img` serão modificados para incluir os dados mais recentes.
 Se quiser apenas vê-los, descomente o comando `# pir.atualiza_graf(show=True)  # Mostra figuras mas não salva` no fim do arquivo.
 
-São gerados os seguintes gráficos:
-* Novos casos confirmados por dia (`novoscasos`)
-* Total de casos confirmados (`totalcasos`)
-* Mortes por dias (`novasmortes`)
-* Total de mortes (`totalmortes`)
-* Combinação dos novos casos por dia e do total de casos (`casosconfirmados`)
-* Combinação das mortes por dia e do total de mortes (`mortes`)
-* Combinação de todos os 4 tipos de dados (arquivo sem sufixo)
+São gerados os seguintes gráficos com a função `atualiza_graf`:
+* Novos casos confirmados por dia (`novoscasos`);
+* Total de casos confirmados (`totalcasos`);
+* Mortes por dias (`novasmortes`);
+* Total de mortes (`totalmortes`);
+* Combinação dos novos casos por dia e do total de casos (`casosconfirmados`);
+* Combinação das mortes por dia e do total de mortes (`mortes`);
+* Combinação de todos os 4 tipos de dados (arquivo sem sufixo).
+
+Os gráficos podem ser conferidos [nessa página](casos-piracicaba.md).
+
+No caso de a cidade disponibilizar as informações sobre sexo e idade dos pacientes, é possível gerar também os gráficos com a função `graf_detalhes` para visualizar a proporção de casos confirmados, pacientes recuperados, e óbitos por idade e sexo.
+São considerados recuperados os pacientes que foram reportados como infectados há mais de 14 dias e que não faleceram.
+
+Os gráficos gerados são:
+* Casos confirmados por sexo e idade (`det-confirmados`);
+* Pacientes recuperados por sexo e idade (`det-recuperados`);
+* Óbitos por sexo e idade (`det-mortes`);
+* Estado dos homens infectados por idade (`det-homens`);
+* Estado das mulheres infectadas por idade (`det-mulheres`);
+* Estado de todos os pacientes infectados por idade (`det-total`).
+
+Os gráficos podem ser conferidos [nessa página](detalhes-piracicaba.md).
 
 
 ## Outras Cidades
