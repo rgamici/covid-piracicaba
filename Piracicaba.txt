@@ -218,3 +218,6 @@
 20200510   P       1       F      55
 20200510   P       1       F      39
 20200510   P       1       F      90
+20200511   M       1       F      86 # Total 15 mortes (igual a contagem)
+20200511   P       1       F      44
+20200511   P       1       F      80 # total 212 casos (contagem 216)
