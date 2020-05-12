@@ -70,3 +70,4 @@
 20200509   P      64       -      --   ## Total 561 (portal covid 1500)
 20200510   M       1       F      28   ## divulgado 20200511 (total 27)
 20200511   P      16       -      --   ## Total 577 (igual a contagem)
+20200512   P      45       -      --   ## Total 622 (igual a contagem)
