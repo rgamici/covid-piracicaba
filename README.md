@@ -2,6 +2,7 @@
 
 ![COVID-Piracicaba](img/Piracicaba.png)
 ![Detalhes dos pacientes-Piracicaba](img/Piracicaba-det-total.png)
+![Projeção-Piracicaba](img/Piracicaba-projecao-14-28.png)
 
 ## Dados
 
@@ -25,6 +26,8 @@ No caso do número de mortes, não é necessário colocar uma entrada com contag
 Para atualizar os gráficos, basta rodar o script `covid.py` e os arquivos na pasta `img` serão modificados para incluir os dados mais recentes.
 Se quiser apenas vê-los, descomente o comando `# pir.atualiza_graf(show=True)  # Mostra figuras mas não salva` no fim do arquivo.
 
+**Evolução de novos casos e óbitos**  
+
 São gerados os seguintes gráficos com a função `atualiza_graf`:
 * Novos casos confirmados por dia (`novoscasos`);
 * Total de casos confirmados (`totalcasos`);
@@ -35,6 +38,8 @@ São gerados os seguintes gráficos com a função `atualiza_graf`:
 * Combinação de todos os 4 tipos de dados (arquivo sem sufixo).
 
 Os gráficos podem ser conferidos [nessa página](casos-piracicaba.md).
+
+**Detalhamento por sexo e idade dos pacientes infectados**
 
 No caso de a cidade disponibilizar as informações sobre sexo e idade dos pacientes, é possível gerar também os gráficos com a função `graf_detalhes` para visualizar a proporção de casos confirmados, pacientes recuperados, e óbitos por idade e sexo.
 São considerados recuperados os pacientes que foram reportados como infectados há mais de 14 dias e que não faleceram.
@@ -48,6 +53,12 @@ Os gráficos gerados são:
 * Estado de todos os pacientes infectados por idade (`det-total`).
 
 Os gráficos podem ser conferidos [nessa página](detalhes-piracicaba.md).
+
+**Estimativa da evolução dos casos e óbitos**
+
+\[Detalhes]
+
+Os gráficos podem ser conferidos [nessa página](projecao-piracicaba.md).
 
 
 ## Outras Cidades

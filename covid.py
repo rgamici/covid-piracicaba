@@ -496,6 +496,7 @@ class Covid:
             Esse arquivos são referenciados pelas páginas, que apontam para os
             mais recentes.
         """
+        print("Gerando gráficos de casos e óbitos")
         # GRÁFICOS DE CASOS CONFIRMADOS
         fig_conf = self.graf_conf()  # gráfico de novos casos
         fig_acc = self.graf_conf_acc()  # gráfico do total de casos
@@ -576,6 +577,7 @@ class Covid:
 
     def graf_detalhes(self, mostra=False, salva=False):
         # initicalização
+        print("Gerando gráficos com detalhamento por sexo e idade")
         idades = np.arange(11)  # mais de 90 na mesma categoria
         labels = ['-', '0-9', '10-19', '20-29', '30-39', '40-49',
                   '50-59', '60-69', '70-79', '80-89', '90-']
@@ -941,6 +943,7 @@ class Covid:
         return(fig_fit)
 
     def graf_fit(self, periodo=0, proj=28):
+        print("Gerando projeções")
         if periodo == 0:
             periodos = [7, 14, 21, 28]
         else:
@@ -1013,8 +1016,7 @@ if __name__ == '__main__':
     print("Processando dados de Piracicaba.")
     pir = Covid("Piracicaba.txt")
     # pir.atualiza_graf(save=True, atualiza_texto=True, show=False)
-    # fig = pir.graf_detalhes(salva=True, mostra=False)
-    print("Gerando projeções")
+    # pir.graf_detalhes(salva=True, mostra=False)
     pir.graf_fit()
     # print("Processando dados de Campinas.")
     # camp = Covid("Campinas.txt")
