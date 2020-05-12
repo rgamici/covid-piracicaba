@@ -16,6 +16,8 @@ import matplotlib.lines as mlines
 import math
 import urllib.request
 import numpy as np
+import pylab
+
 
 matplotlib.rcParams['font.family'] = "monospace"
 
@@ -63,6 +65,10 @@ class Covid:
         # calcula os números acumulados
         self.acc_conf = self.acumulados(self.data, self.conf)
         self.acc_mort = self.acumulados(self.data_mort, self.mortes)
+        # ### desloca eixo x de mortes
+        self.dias_mort_corr = []
+        for dia in self.dias_mort:
+            self.dias_mort_corr.append(dia + self.diff_morte)
         self.limpa_datas_marcadas()
         if dados_seade == "":
             self.det_conf = self.scrap_pessoal("P")
@@ -290,7 +296,7 @@ class Covid:
         # fig.tight_layout()  # otherwise the right y-label is slightly clipped
         return(fig)
 
-    def marcar_datas(self, fig, x_axis, y_axis, label):
+    def marcar_datas(self, fig, x_axis, y_axis, labels, color=''):
         """ Adiciona marcações nos dados com certa frequencia
 
         As marcas são adicionadas no primeiro valor e no último, assim como nos
@@ -310,7 +316,8 @@ class Covid:
             Rótulos usados nos dados do eixo x
         """
         ax = fig.gca()
-        color = ax.yaxis.label.get_color()
+        if color == '':
+            color = ax.yaxis.label.get_color()
         # definir ticks e posição das linhas relevantes
         # eixo x
         x_ticks = []
@@ -321,17 +328,18 @@ class Covid:
             if (
                 i == 0
                 or i == len(x_axis) - 1
-                or int(label[i]) % 100 == 1
-                or int(label[i]) % 100 == 15
+                or int(labels[i]) % 100 == 1
+                or int(labels[i]) % 100 == 15
             ):
                 x_ticks.append(x_axis[i])
-                x_labels.append(label[i][6:] + '/' + label[i][4:6])
+                x_labels.append(labels[i][6:] + '/' + labels[i][4:6])
                 vlines_x.append(x_axis[i])
                 vlines_y.append(y_axis[i])
                 self.datas_marcadas_i.append(x_axis[i])
-                self.datas_marcadas.append(label[i][6:] + '/' + label[i][4:6])
+                self.datas_marcadas.append(labels[i][6:] + '/'
+                                           + labels[i][4:6])
         for x, y in zip(vlines_x, vlines_y):
-            label = str(y)
+            label = str(int(y))
             plt.annotate(label, (x, y), textcoords="offset points",
                          xytext=(10, -10), ha='center', color=color)
         plt.xticks(x_ticks, x_labels, rotation=90)
@@ -439,10 +447,6 @@ class Covid:
         return(fig_both_mort)
 
     def graf_all(self):
-        # ### desloca eixo x de mortes
-        self.dias_mort_corr = []
-        for dia in self.dias_mort:
-            self.dias_mort_corr.append(dia + self.diff_morte)
         # ### cria gráfico e plota total de casos
         fig_all = self.plot_acc_conf(self.dias, self.acc_conf,
                                      'tab:red', self.data, "")
@@ -820,6 +824,155 @@ class Covid:
         if mostra:
             plt.show()
 
+    def fit(self, periodo=-1, proj=28):
+        # filtra dados do últimos n dias
+        if periodo == -1:
+            dias = self.dias[:]
+            conf = self.acc_conf[:]
+            dias_m = self.dias_mort_corr[:]
+            mort = self.acc_mort[:]
+        else:
+            dias = []
+            conf = []
+            dias_m = []
+            mort = []
+            for i in range(len(self.dias)):
+                if self.dias[i] > self.dias[-1] - periodo - 1:
+                    dias.append(self.dias[i])
+                    conf.append(self.acc_conf[i])
+            for i in range(len(self.dias_mort_corr)):
+                if self.dias_mort_corr[i] > (self.dias_mort_corr[-1]
+                                             - periodo - 1):
+                    dias_m.append(self.dias_mort_corr[i])
+                    mort.append(self.acc_mort[i])
+        # regressões  y = b.e^ax
+        (a_c, b_c) = pylab.polyfit(dias, np.log(conf), 1)
+        (a_m, b_m) = pylab.polyfit(dias_m, np.log(mort), 1)
+        # transforma b
+        b_c = math.exp(b_c)
+        b_m = math.exp(b_m)
+        # gera dados para plotar regressões
+        x = np.linspace(min(max(dias[0] - 3 * (dias[-1] - dias[0]),
+                                self.dias[0]),
+                            self.dias[0]),
+                        dias[-1] + proj)
+        y_c = []
+        y_m = []
+        datas = []
+        for i in x:
+            y_c.append(b_c * math.exp(a_c * i))
+            y_m.append(b_m * math.exp(a_m * i))
+            # gerar datas para marcação
+            datas.append("00000000")
+        # plota grafico
+        # plota casos confirmados e regresssão
+        fig_fit = self.plot_acc_conf(self.dias, self.acc_conf,
+                                     'tab:red', self.data, "Total de Casos")
+        ax_conf = fig_fit.gca()
+        ax_conf.plot(x, y_c, linestyle='--', color='tab:orange')
+        ax_conf.set_ylim(top=max(y_c)*2)
+        corrige_y(ax_conf)
+        # novo eixo e plota mortes e regressão
+        self.plot_acc_conf(self.dias_mort_corr, self.acc_mort,
+                           'black', self.data_mort,
+                           "Total de Mortes", fig_fit, True)
+        ax_mort = fig_fit.gca()
+        ax_mort.plot(x, y_m, linestyle='--', color='tab:blue')
+        ax_mort.set_ylim(top=ax_conf.get_ylim()[1])
+        corrige_y(ax_mort)
+        # marca datas relevantes
+        x_tick = []
+        x_label = []
+        vlines_x = []
+        vlines_y = []
+        # dados
+        for i in range(0, len(dias)):
+            if i % 7 == 0 or i == len(dias)-1:
+                x_tick.append(dias[i])  # para conf e mort
+                x_label.append(gera_data(dias[i], self.dias[-1],
+                                         self.data[-1]))
+                vlines_x.append([dias[i]]*2)
+                vlines_y.append(conf[i])
+                vlines_y.append(mort[i])
+                plt.annotate(str(int(conf[i])), (dias[i], conf[i]),
+                             textcoords="offset points",
+                             xytext=(10, -10), ha='center', color='tab:red')
+                plt.annotate(str(int(mort[i])), (dias[i], mort[i]),
+                             textcoords="offset points",
+                             xytext=(10, -10), ha='center', color='black')
+        for i in range(7, proj+1, 7):
+            dia = dias[-1] + i
+            x_tick.append(dia)  # para conf e mort
+            x_label.append(gera_data(dia, self.dias[-1],
+                                     self.data[-1]))
+            vlines_x.append([dia]*2)
+            calc_c = b_c * math.exp(a_c * dia)
+            calc_m = b_m * math.exp(a_m * dia)
+            vlines_y.append(calc_c)
+            vlines_y.append(calc_m)
+            plt.annotate(str(int(calc_c)), (dia, calc_c),
+                         textcoords="offset points",
+                         xytext=(-2, 2), ha='right', color='tab:orange')
+            plt.annotate(str(int(calc_m)), (dia, calc_m),
+                         textcoords="offset points",
+                         xytext=(-2, 2), ha='right', color='tab:blue')
+        for tick in x_tick:
+            # anotar dados
+            plt.xticks(x_tick, x_label, rotation=90)
+        ax_conf.vlines(vlines_x, [0]*len(vlines_x), vlines_y,
+                       linestyles='dashed', color='tab:grey', linewidth=1)
+        # Adicionar legenda
+        handles = [mlines.Line2D([], [], color='tab:red', marker="o",
+                                 linestyle="None", label="Total de Casos"),
+                   mlines.Line2D([], [], color='black', marker="o",
+                                 linestyle="None", label="Total de Mortes"),
+                   mlines.Line2D([], [], color='tab:orange', marker="None",
+                                 linestyle="--", label="Estimativa de Casos"),
+                   mlines.Line2D([], [], color='tab:blue', marker="None",
+                                 linestyle="--", label="Estimativa de Mortes")]
+        ax_conf.legend(handles=handles, loc=(0.02, 0.7))
+        # título
+        ax_conf.set_title("Projeção de novos casos e mortes em " + self.nome)
+        fig_fit.text(0.5, 0.92, "Período de análise: " + str(periodo) +
+                     " dias, Projeção: " + str(proj) + " dias", fontsize=10,
+                     horizontalalignment='center',
+                     verticalalignment='top')
+        fig_fit.tight_layout()
+        return(fig_fit)
+
+    def graf_fit(self, periodo=0, proj=28):
+        if periodo == 0:
+            periodos = [7, 14, 21, 28]
+        else:
+            periodos = [periodo]
+        for periodo in periodos:
+            print("Projeção dos últimos " + str(periodo) + " dias")
+            fig = self.fit(periodo, proj)
+            data = max(self.data[-1], self.data_mort[-1])
+            fig.savefig("img/" + data + "-" + self.nome + "-projecao-" +
+                        str(periodo) + "-" + str(proj) + ".png")
+            fig.savefig("img/" + self.nome + "-projecao-" +
+                        str(periodo) + "-" + str(proj) + ".png")
+
+
+def gera_data(dia, referencia, data):
+    label = datetime.datetime.strptime(data, "%Y%m%d")
+    delta = datetime.timedelta(days=referencia-dia)
+    label = datetime.datetime.strftime(label - delta, "%d/%m")
+    return(label)
+
+
+def corrige_y(ax):
+    _, max_value = ax.get_ylim()
+    max_value = int(math.ceil(math.log(max_value, 10)))
+    y_ticks = []
+    for i in range(max_value):
+        for j in [1, 2, 3, 5]:
+            y_ticks.append(j * 10 ** i)
+    ax.yaxis.set_major_locator(ticker.FixedLocator(y_ticks))
+    ax.yaxis.set_major_formatter(
+        ticker.FuncFormatter(lambda y, _: '{:g}'.format(y)))
+
 
 def autolabel(ax, rects):
     """Attach a text label above each bar in *rects*, displaying its height."""
@@ -859,16 +1012,17 @@ def plt_seade(cidades):
 if __name__ == '__main__':
     print("Processando dados de Piracicaba.")
     pir = Covid("Piracicaba.txt")
-    fig = pir.graf_detalhes(salva=True, mostra=False)
-    pir.atualiza_graf(save=True, atualiza_texto=True, show=False)
-    print("Processando dados de Campinas.")
-    camp = Covid("Campinas.txt")
-    camp.atualiza_graf(save=True, atualiza_texto=True, show=False)
-    print("Atualizando dados do SEADE.")
-    dados_seade = download_seade()
-    cidades = ["Limeira",
-               "Campinas", "Sao Paulo", "Ribeirao Preto", "Piracicaba",
-               ]
-    plt_seade(cidades)
-    # plt.show()
-    fig = camp.graf_detalhes(salva=False, mostra=False)
+    # pir.atualiza_graf(save=True, atualiza_texto=True, show=False)
+    # fig = pir.graf_detalhes(salva=True, mostra=False)
+    print("Gerando projeções")
+    pir.graf_fit()
+    # print("Processando dados de Campinas.")
+    # camp = Covid("Campinas.txt")
+    # camp.atualiza_graf(save=True, atualiza_texto=True, show=False)
+    # print("Atualizando dados do SEADE.")
+    # dados_seade = download_seade()
+    # cidades = ["Limeira",
+    #            "Campinas", "Sao Paulo", "Ribeirao Preto", "Piracicaba",
+    #            ]
+    # plt_seade(cidades)
+    # fig = camp.graf_detalhes(salva=False, mostra=False)
