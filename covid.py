@@ -860,12 +860,15 @@ class Covid:
                         dias[-1] + proj)
         y_c = []
         y_m = []
-        datas = []
         for i in x:
             y_c.append(b_c * math.exp(a_c * i))
             y_m.append(b_m * math.exp(a_m * i))
             # gerar datas para marcação
-            datas.append("00000000")
+        # calcula outros dados
+        dobro_c = math.log(2) / a_c
+        dobro_m = math.log(2) / a_m
+        cresc_c = math.exp(a_c * 30)
+        cresc_m = math.exp(a_m * 30)
         # plota grafico
         # plota casos confirmados e regresssão
         fig_fit = self.plot_acc_conf(self.dias, self.acc_conf,
@@ -939,6 +942,17 @@ class Covid:
                      " dias, Projeção: " + str(proj) + " dias", fontsize=10,
                      horizontalalignment='center',
                      verticalalignment='top')
+        self.fig_add_fonte(fig_fit)
+        fig_fit.text(0, 0, "Número de casos dobra em "
+                     + str(int(dobro_c))
+                     + " dias\nCrescimento em um mês: "
+                     + str("{:.2f}").format(cresc_c)
+                     + " vezes\nNúmero de mortes dobra em " + str(int(dobro_m))
+                     + " dias\nCrescimento em um mês: "
+                     + str("{:.2f}").format(cresc_m) + " vezes",
+                     fontsize=8,
+                     horizontalalignment='left',
+                     verticalalignment='bottom')
         fig_fit.tight_layout()
         return(fig_fit)
 
@@ -1018,6 +1032,7 @@ if __name__ == '__main__':
     # pir.atualiza_graf(save=True, atualiza_texto=True, show=False)
     # pir.graf_detalhes(salva=True, mostra=False)
     pir.graf_fit()
+    plt.show()
     # print("Processando dados de Campinas.")
     # camp = Covid("Campinas.txt")
     # camp.atualiza_graf(save=True, atualiza_texto=True, show=False)
