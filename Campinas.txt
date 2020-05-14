@@ -40,6 +40,7 @@
 20200416   M       1       F      71
 20200417   P      11       -      --
 20200417   M       1       M      82    # divulgado dia 20200425
+20200417   M       1       M      82   ## divulgado 20200514
 20200420   M       1       M      82    # divulgado dia 20200427    
 20200420   P      14       -      --    
 20200422   P      22       -      --
@@ -71,6 +72,9 @@
 20200510   M       1       F      28   ## divulgado 20200511 (total 27)
 20200511   P      16       -      --   ## Total 577 (igual a contagem)
 20200511   M       1       M      81   ## divulgado 20200513 (total 28)
+20200511   M       1       F      67   ## divulgado 20200514
 20200512   P      45       -      --   ## Total 622 (igual a contagem)
 20200513   P      47       -      --   ## Total 669 (igual a contagem)
+20200514   M       1       M      69   ## Total 31 mortes (igual a contagem)
+20200514   P      45       -      --   ## Total 714 (igual a contagem)
 
