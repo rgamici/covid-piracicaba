@@ -57,7 +57,7 @@
 20200428   M       1       F      58   # divulgado 20204029
 20200429   P      30       -      -- 
 20200430   P      11       -      --   ## Total 347 casos (igual a contagem)
-20200510   M       1       M      58   ## divulgado 20200504
+20200501   M       1       M      58   ## divulgado 20200504
 20200501   M       1       F      50   ## divulgado 20200505
 20200502   M       1       F      88   ## divulgado 20200504 (22 mortes igual)
 20200503   M       1       M      20   ## divulgado 20200505
@@ -70,11 +70,15 @@
 20200508   P      48       -      --   ## Total 497 casos (igual a contagem)
 20200509   P      64       -      --   ## Total 561 (portal covid 1500)
 20200510   M       1       F      28   ## divulgado 20200511 (total 27)
+20200510   M       1       M      68 # divulgado 20200515
 20200511   P      16       -      --   ## Total 577 (igual a contagem)
 20200511   M       1       M      81   ## divulgado 20200513 (total 28)
 20200511   M       1       F      67   ## divulgado 20200514
 20200512   P      45       -      --   ## Total 622 (igual a contagem)
 20200513   P      47       -      --   ## Total 669 (igual a contagem)
+20200513   M       1       M      79 # divulgado 20200515
 20200514   M       1       M      69   ## Total 31 mortes (igual a contagem)
 20200514   P      45       -      --   ## Total 714 (igual a contagem)
+20200514   M       1       M      70 # divulgado 20200515 (total 34 = contagem)
+20200515   P      61       -      -- # total 775 (igual a contagem)
 
