@@ -20,6 +20,7 @@ import pylab
 
 
 matplotlib.rcParams['font.family'] = "monospace"
+plt.rcParams.update({'figure.max_open_warning': 0})
 
 
 class Covid:
@@ -107,8 +108,9 @@ class Covid:
         mortes = []
         acc_conf = 0
         acc_mort = 0
-        cidade = self.nome.lower()
-        matches = re.findall(cidade + ";.*;", dados_seade)
+        cidade = self.nome
+        matches = re.findall(cidade + ";.*", dados_seade)
+        print(len(matches))
         for match in matches:
             pattern = (cidade +
                        "; *([0-9NA]+); *([0-9NA]+); *([0-9]+); *([0-9]+)")
@@ -833,6 +835,7 @@ class Covid:
             conf = self.acc_conf[:]
             dias_m = self.dias_mort_corr[:]
             mort = self.acc_mort[:]
+            periodo = len(dias)
         else:
             dias = []
             conf = []
@@ -926,16 +929,31 @@ class Covid:
             plt.xticks(x_tick, x_label, rotation=90)
         ax_conf.vlines(vlines_x, [0]*len(vlines_x), vlines_y,
                        linestyles='dashed', color='tab:grey', linewidth=1)
-        # Adicionar legenda
-        handles = [mlines.Line2D([], [], color='tab:red', marker="o",
-                                 linestyle="None", label="Total de Casos"),
-                   mlines.Line2D([], [], color='black', marker="o",
-                                 linestyle="None", label="Total de Mortes"),
-                   mlines.Line2D([], [], color='tab:orange', marker="None",
-                                 linestyle="--", label="Estimativa de Casos"),
-                   mlines.Line2D([], [], color='tab:blue', marker="None",
-                                 linestyle="--", label="Estimativa de Mortes")]
-        ax_conf.legend(handles=handles, loc=(0.02, 0.7))
+        # Adiciona zoom das regressões
+        # zoom conf
+        axins = ax_conf.inset_axes([0.05, 0.6, 0.25, 0.3])
+        # sub region of the original image
+        axins.scatter(dias, conf, color='tab:red', s=10)
+        axins.plot(x, y_c, linestyle='--', color='tab:orange')
+        x1, x2 = dias[0]-periodo*1/7, dias[-1]+periodo*1/7
+        y1, y2 = conf[0]*.9, conf[-1]*1.1
+        axins.set_yscale('log')
+        axins.set_xlim(x1, x2)
+        axins.set_ylim(y1, y2)
+        axins.tick_params(which="both", bottom=False, left=False,
+                          labelbottom=False, labelleft=False)
+        # zoom mortes
+        axins2 = ax_conf.inset_axes([0.7, 0.02, 0.25, 0.3])
+        # sub region of the original image
+        axins2.scatter(dias_m, mort, color='black', s=10)
+        axins2.plot(x, y_m, linestyle='--', color='tab:blue')
+        x1, x2 = dias_m[0]-periodo*1/7, dias_m[-1]+periodo*1/7
+        y1, y2 = mort[0]*.9, mort[-1]*1.1
+        axins2.set_yscale('log')
+        axins2.set_xlim(x1, x2)
+        axins2.set_ylim(y1, y2)
+        axins2.tick_params(which="both", bottom=False, left=False,
+                           labelbottom=False, labelleft=False)
         # título
         ax_conf.set_title("Projeção de novos casos e mortes em " + self.nome)
         fig_fit.text(0.5, 0.92, "Período de análise: " + str(periodo) +
@@ -947,7 +965,8 @@ class Covid:
                      + str(int(dobro_c))
                      + " dias\nCrescimento em um mês: "
                      + str("{:.2f}").format(cresc_c)
-                     + " vezes\nNúmero de mortes dobra em " + str(int(dobro_m))
+                     + " vezes\n\nNúmero de mortes dobra em "
+                     + str(int(dobro_m))
                      + " dias\nCrescimento em um mês: "
                      + str("{:.2f}").format(cresc_m) + " vezes",
                      fontsize=8,
@@ -1024,6 +1043,7 @@ def plt_seade(cidades):
         covid = Covid(nome=cidade, dados_seade=dados_seade)
         fig = covid.graf_all()
         fig.savefig("img/" + covid.nome.replace(' ', '_') + "-SEADE.png")
+        # covid.graf_fit()  # precisa marcar como SEADE no nome do arquivo
 
 
 if __name__ == '__main__':
@@ -1031,11 +1051,11 @@ if __name__ == '__main__':
     pir = Covid("Piracicaba.txt")
     # pir.atualiza_graf(save=True, atualiza_texto=True, show=False)
     # pir.graf_detalhes(salva=True, mostra=False)
-    pir.graf_fit()
-    plt.show()
+    # pir.graf_fit()
     # print("Processando dados de Campinas.")
     # camp = Covid("Campinas.txt")
     # camp.atualiza_graf(save=True, atualiza_texto=True, show=False)
+    # camp.graf_fit()
     # print("Atualizando dados do SEADE.")
     # dados_seade = download_seade()
     # cidades = ["Limeira",
@@ -1043,3 +1063,5 @@ if __name__ == '__main__':
     #            ]
     # plt_seade(cidades)
     # fig = camp.graf_detalhes(salva=False, mostra=False)
+    pir.graf_fit()
+    plt.show()
