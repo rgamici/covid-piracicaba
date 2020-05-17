@@ -279,3 +279,4 @@
 20200516   P       1       F      41
 20200516   P       1       F      32
 20200516   P       1       F      31  # Total 269 casos (contagem 273)
+20200517   P       0       -      --  # Nenhum novo caso reportado
