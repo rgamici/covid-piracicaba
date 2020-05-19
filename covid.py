@@ -17,7 +17,7 @@ import math
 import urllib.request
 import numpy as np
 import pylab
-
+import csv
 
 matplotlib.rcParams['font.family'] = "monospace"
 plt.rcParams.update({'figure.max_open_warning': 0})
@@ -109,23 +109,17 @@ class Covid:
         acc_conf = 0
         acc_mort = 0
         cidade = self.nome
-        matches = re.findall(cidade + ";.*", dados_seade)
-        print(len(matches))
-        for match in matches:
-            pattern = (cidade +
-                       "; *([0-9NA]+); *([0-9NA]+); *([0-9]+); *([0-9]+)")
-            result = re.search(pattern, match)
-            if result:
+        for row in dados_seade:
+            if row['nome_munic'] == cidade:
                 data = datetime.datetime.strftime(
-                    datetime.datetime.strptime(result[3] + " "
-                                               + result[4] + " 2020",
-                                               "%d %m %Y"), "%Y%m%d")
-                if result[1] != "NA":
+                    datetime.datetime.strptime(row['datahora'],
+                                               "%Y-%m-%d"), "%Y%m%d")
+                if row['casos'] != "NA":
                     datas.append(data)
-                    conf.append(int(result[1]) - acc_conf)
-                    acc_conf = int(result[1])
-                if result[2] != "NA":
-                    morte = int(result[2])
+                    conf.append(int(row['casos']) - acc_conf)
+                    acc_conf = int(row['casos'])
+                if row['obitos'] != "NA":
+                    morte = int(row['obitos'])
                     data_mort.append(data)
                     mortes.append(morte - acc_mort)
                     acc_mort = morte
@@ -985,9 +979,12 @@ class Covid:
             print("Projeção dos últimos " + str(periodo) + " dias")
             fig = self.fit(periodo, proj)
             data = max(self.data[-1], self.data_mort[-1])
-            fig.savefig("img/" + data + "-" + self.nome + "-projecao-" +
+            nome = self.nome
+            if self.arquivo is None:
+                nome += "-SEADE"
+            fig.savefig("img/" + data + "-" + nome + "-projecao-" +
                         str(periodo) + "-" + str(proj) + ".png")
-            fig.savefig("img/" + self.nome + "-projecao-" +
+            fig.savefig("img/" + nome + "-projecao-" +
                         str(periodo) + "-" + str(proj) + ".png")
 
 
@@ -1032,36 +1029,39 @@ def download_seade():
     url = ("https://raw.githubusercontent.com/seade-R/dados-covid-sp/"
            "master/data/dados_covid_sp.csv")
     response = urllib.request.urlopen(url)
-    data = response.read()      # a `bytes` object
-    text = str(data, 'iso-8859-1')
+    text = response.read()
+    text = str(text, 'utf-8')
+    text = csv.DictReader(text.splitlines(), delimiter=';',
+                          quoting=csv.QUOTE_NONE)
     return(text)
 
 
 def plt_seade(cidades):
     for cidade in cidades:
+        dados_seade = download_seade()
         print("Processando dados de " + cidade)
         covid = Covid(nome=cidade, dados_seade=dados_seade)
         fig = covid.graf_all()
         fig.savefig("img/" + covid.nome.replace(' ', '_') + "-SEADE.png")
-        # covid.graf_fit()  # precisa marcar como SEADE no nome do arquivo
+        covid.graf_fit()  # precisa marcar como SEADE no nome do arquivo
 
 
 if __name__ == '__main__':
     print("Processando dados de Piracicaba.")
     pir = Covid("Piracicaba.txt")
-    # pir.atualiza_graf(save=True, atualiza_texto=True, show=False)
-    # pir.graf_detalhes(salva=True, mostra=False)
-    # pir.graf_fit()
-    # print("Processando dados de Campinas.")
-    # camp = Covid("Campinas.txt")
-    # camp.atualiza_graf(save=True, atualiza_texto=True, show=False)
-    # camp.graf_fit()
-    # print("Atualizando dados do SEADE.")
-    # dados_seade = download_seade()
-    # cidades = ["Limeira",
-    #            "Campinas", "Sao Paulo", "Ribeirao Preto", "Piracicaba",
-    #            ]
-    # plt_seade(cidades)
-    # fig = camp.graf_detalhes(salva=False, mostra=False)
+    pir.atualiza_graf(save=True, atualiza_texto=True, show=False)
+    pir.graf_detalhes(salva=True, mostra=False)
     pir.graf_fit()
-    plt.show()
+    print("Processando dados de Campinas.")
+    camp = Covid("Campinas.txt")
+    camp.atualiza_graf(save=True, atualiza_texto=True, show=False)
+    camp.graf_fit()
+    print("Atualizando dados do SEADE.")
+    cidades = ["Campinas", "São Paulo", "Piracicaba"]
+    # Limeira dá erro nas projeções
+    # Ribeirão preto dá erro na figura com todos os dados
+    plt_seade(cidades)
+    # fig = camp.graf_detalhes(salva=False, mostra=False)
+    # teste
+    # pir.graf_fit()
+    # plt.show()
