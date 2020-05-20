@@ -304,7 +304,7 @@
 20200518   P       1       F      30
 20200518   P       1       F      24
 20200519   M       1       M      63
-20200519   M       1       F      87
+20200519   M       1       F      87  # Total 19 mortes (igual a contagem)
 20200519   P       1       M      18
 20200519   P       1       M      31
 20200519   P       1       M      34
@@ -328,9 +328,14 @@
 20200519   P       1       F      28
 20200519   P       1       F      18
 20200519   P       1       F      13
+20200520   P       1       M      63
+20200520   P       1       M      52
+20200520   P       1       M      75
+20200520   P       1       M      78
+20200520   P       2       M      62
+20200520   P       1       F      68
+20200520   P       1       F      81
+20200520   P       1       F      89
+20200520   P       1       F      23
+20200520   P       1       F      37
 
-
-
-15 Homens: 18 anos, 45 anos, 56 anos, 45 anos, 36 anos, 48 anos, 35 anos, 54 anos, 64 anos, 56 anos, 31 anos, 49 anos, 34 anos, 58 anos, 71 anos
-
-12 Mulheres: 43 anos, 40 anos, 38 anos, 35 anos, 34 anos, 33 anos (3), 30 anos, 28 anos, 18 anos e 13 anos
