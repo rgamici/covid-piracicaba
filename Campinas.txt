@@ -96,4 +96,4 @@
 20200519   P      64       -      -- # Total 967 casos (igual a contagem)
 20200519   M       1       M      65 # divulgado 20200520 (total 44 = contagem)
 20200520   P      48       -      -- # Total 1015 (igual a contagem)
-
+20200521   P      57       -      -- # Total 1072 (igual a contagem)
