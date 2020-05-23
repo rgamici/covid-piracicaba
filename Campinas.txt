@@ -90,6 +90,7 @@
 20200515   M       1       F      54 # divulgado 20200518
 20200515   M       1       F      86 # divulgado 20200518 (total 38 - contagem)
 20200515   M       1       M      79 # divulgado 20200519 (43ª morte)
+20200515   M       1	   F	  67 # divulgado 20200523
 20200516   P      78       -      -- # Total 853 casos (igual a contagem)
 20200516   M       1       M      61 # divulgado 20200518
 20200516   M	   1	   F	  85 # divulgado 20200522
@@ -104,5 +105,7 @@
 20200520   M	   1	   F	  74 # divulgado 20200522
 20200521   P      57       -      -- # Total 1072 (igual a contagem)
 20200521   M	   1	   F	  73 # divulgado 20200522 total 51 = contagem
+20200521   M       1	   M	  72 # divulgado 20200523 total 53 = contagem
 20200522   P      61       -      -- # Total 1133 (igual a contagem)
+20200523   P      50       -      -- # Total 1183 (igual a contagem)
 
