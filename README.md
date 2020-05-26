@@ -69,6 +69,12 @@ Os gráficos podem ser conferidos [nessa página](projecao-piracicaba.md).
   
   ![COVID-Campinas](img/Campinas.png)
 
+  [Mais gráficos](img-Campinas.md).
+
+* São Paulo
+
+  [Mais gráficos](img-SaoPaulo.md).
+
 ## Dados do SEADE
 
 A fundação SEADE disponibiliza os dados referentes a todo o estado de São Paulo no [seu site](https://www.seade.gov.br/coronavirus/) e em um [repositório no git-hub](https://github.com/seade-R/dados-covid-sp).
@@ -76,7 +82,7 @@ A fundação SEADE disponibiliza os dados referentes a todo o estado de São Pau
 Utilizando o script, é possível plotar os gráficos de qualquer cidade no estado.
 
 ![Piracicaba-SEADE](img/Piracicaba-SEADE.png)
-![São Paulo-SEADE](img/Sao_Paulo-SEADE.png)
+![São Paulo-SEADE](img/São_Paulo-SEADE.png)
 ![Campinas-SEADE](img/Campinas-SEADE.png)
 ![Ribeirão Preto-SEADE](img/Ribeirao_Preto-SEADE.png)
 ![Limeira-SEADE](img/Limeira-SEADE.png)

@@ -1055,6 +1055,7 @@ if __name__ == '__main__':
     print("Processando dados de Campinas.")
     camp = Covid("Campinas.txt")
     camp.atualiza_graf(save=True, atualiza_texto=True, show=False)
+    camp.graf_detalhes(salva=True, mostra=False)
     camp.graf_fit()
     print("Atualizando dados do SEADE.")
     cidades = ["Campinas", "São Paulo", "Piracicaba"]
