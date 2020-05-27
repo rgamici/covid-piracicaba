@@ -96,16 +96,34 @@
 20200516   M	   1	   F	  85 # divulgado 20200522
 20200517   P      35       -      -- # Total 888 casos (igual a contagem)
 20200517   M       1       F      65 # divulgado 20200518 (total 42 = contagem)
+20200517   M       1       F      85 # divulgado 20200526
 20200518   P      15       -      -- # Total 903 casos (igual a contagem)
+20200518   M       1       F      90 # divulgado 20200526
 20200519   P      64       -      -- # Total 967 casos (igual a contagem)
 20200519   M       1       M      65 # divulgado 20200520 (total 44 = contagem)
 20200519   M	   1	   M	  41 # divulgado 20200522
 20200519   M	   1	   F	 103 # divulgado 20200522
 20200520   P      48       -      -- # Total 1015 (igual a contagem)
 20200520   M	   1	   F	  74 # divulgado 20200522
+20200520   M       9       H      64 # divulgado 20200527
+20200520   M       1       H      70 # divulgado 20200526
 20200521   P      57       -      -- # Total 1072 (igual a contagem)
 20200521   M	   1	   F	  73 # divulgado 20200522 total 51 = contagem
 20200521   M       1	   M	  72 # divulgado 20200523 total 53 = contagem
+20200521   M       9       M      59 # divulgado 20200527
 20200522   P      61       -      -- # Total 1133 (igual a contagem)
 20200523   P      50       -      -- # Total 1183 (igual a contagem)
+20200523   M       1       F      87 # divulgado 20200526
+20200523   M       1       H      91 # divulgado 20200526
+20200524   M       9       H      62 # divulgado 20200527 total 65 = contagem
+20200524   M       1       F      87 # divulgado 20200526
+20200525   P      10       -      -- # inclui FDS
+20200525   M       1       -      -- # não divulgada
+20200525   M       1       M      81 # divulgado 20200526
+20200525   M       1       F      86 # divulgado 20200526
+20200526   P      66       -      -- # 
+20200527   P      28       -      -- # Total 1287
+
+
+
 

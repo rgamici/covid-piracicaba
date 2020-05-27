@@ -485,3 +485,11 @@
 20200526   P       1       F      67
 20200526   P       1       F      38
 20200526   P       1       F      26 # Total 487 casos (contagem 491)
+2020052M   M       1       F      73 # Total 24 mortes (igual a contagem)
+20200527   P       1       M      62
+20200527   P       1       M      55
+20200527   P       1       F      73
+20200527   P       1       F      85
+20200527   P       1       F      23
+20200527   P       1       F      50
+20200527   P       1       F      80 # Total 494 casos
