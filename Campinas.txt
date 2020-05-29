@@ -123,7 +123,8 @@
 20200525   M       1       F      86 # divulgado 20200526
 20200526   P      66       -      -- # 
 20200527   P      28       -      -- # Total 1287
-
-
+20200527   M       1       M      71 # divulgado 20200528
+20200527   M       1       M      75 # divulgado 20200528 (total 67 =contagem)
+20200528   P      66       -      -- # Total 1353 (igual a contagem)
 
 
