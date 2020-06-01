@@ -133,6 +133,12 @@
 20200529   P      81       -      -- # total 1434 (igual a contagem)
 20200529   M       1       F      83 # divulgado 20200530
 20200529   M       1       F      87 # divulgado 20200530 tot 73 =contagem
+20200529   M       1       M      69 # divulgado 20200601
+20200529   M       1       F      74 # divulgado 20200601
+20200529   M       1       F      64 # divulgado 20200601
 20200530   P     136       -      -- # Total 2570 (igual a contagem)
+20200530   M       1       H      90 # divulgado 20200601
+20200531   P      44       -      --
+20200531   M       1       F      57 # divulgado 20200601 (total 78)
+20200601   P     121       -      -- # Total 1735 (igual a contagem)
 
- 
