@@ -621,6 +621,13 @@ class Covid:
             else:
                 mort_x[idade] += self.det_mort["quant"][i]
                 recu_x[idade] -= self.det_mort["quant"][i]
+        for i in range(len(recu_m)):
+            if recu_m[i] < 0:
+                recu_m[i] = 0
+            if recu_f[i] < 0:
+                recu_f[i] = 0
+            if recu_x[i] < 0:
+                recu_x[i] = 0
         # calcula os totais de casos
         tot_conf_m = sum(conf_m)
         tot_conf_f = sum(conf_f)
