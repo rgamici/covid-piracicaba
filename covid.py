@@ -735,8 +735,8 @@ class Covid:
         ax.set_xticks(idades)
         label_temp = []
         for i in range(len(conf)):
-            if conf_m[i] != 0:
-                taxa = int(mort_m[i]/conf_m[i] * 100)
+            if mort_m[i] != 0:
+                taxa = int(mort_m[i] / (mort_m[i] + recu_m[i]) * 100)
             else:
                 taxa = 0
             taxa = str(taxa) + "%"
@@ -764,8 +764,8 @@ class Covid:
         ax.set_xticks(idades)
         label_temp = []
         for i in range(len(conf)):
-            if conf_f[i] != 0:
-                taxa = int(mort_f[i]/conf_f[i] * 100)
+            if mort_f[i] != 0:
+                taxa = int(mort_f[i] / (mort_f[i] + recu_f[i]) * 100)
             else:
                 taxa = 0
             taxa = str(taxa) + "%"
@@ -793,8 +793,8 @@ class Covid:
         ax.set_xticks(idades)
         label_temp = []
         for i in range(len(conf)):
-            if conf[i] != 0:
-                taxa = int(mort[i]/conf[i] * 100)
+            if mort[i] != 0:
+                taxa = int(mort[i] / (mort[i] + recu[i]) * 100)
             else:
                 taxa = 0
             taxa = str(taxa) + "%"
