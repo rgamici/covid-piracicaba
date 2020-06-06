@@ -112,7 +112,10 @@
 20200521   M	   1	   F	  73 # divulgado 20200522 total 51 = contagem
 20200521   M       1	   M	  72 # divulgado 20200523 total 53 = contagem
 20200521   M       9       M      59 # divulgado 20200527
+20200521   M       1       M      59 #divulgado 20200605
+20200521   M       1       F      55 #divulgado 20200605
 20200522   P      61       -      -- # Total 1133 (igual a contagem)
+20200522   M       1       M      68 #divulgado 20200605
 20200523   P      50       -      -- # Total 1183 (igual a contagem)
 20200523   M       1       F      87 # divulgado 20200526
 20200523   M       1       H      91 # divulgado 20200526
@@ -126,6 +129,7 @@
 20200525   M       1       F      86 # divulgado 20200526
 20200526   P      66       -      -- # 
 20200526   M       1       M      90 # divulgado 20200530
+20200526   M       1       M      82 #divulgado 20200605
 20200527   P      28       -      -- # Total 1287
 20200527   M       1       M      71 # divulgado 20200528
 20200527   M       1       M      75 # divulgado 20200528 (total 67 =contagem)
@@ -157,8 +161,9 @@
 20200603   P     291       -      --
 20200603   M       1       F      96 # divulgado 20200603 (total 84 =contagem)
 20200603   M       1       M      70 #divulgado 20200604 (total 92 = contagem)
+20200603   M       1       M      83 #divulgado 20200605 (total 97 = contagem)
 20200604   P     138       -      --
+20200605   P     167       -      --
 
 
- 
 
