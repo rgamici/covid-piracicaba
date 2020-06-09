@@ -115,14 +115,21 @@ class Covid:
                     datetime.datetime.strptime(row['datahora'],
                                                "%Y-%m-%d"), "%Y%m%d")
                 if row['casos'] != "NA":
-                    datas.append(data)
-                    conf.append(int(row['casos']) - acc_conf)
-                    acc_conf = int(row['casos'])
+                    if len(datas) == 0 and int(row['casos']) == 0:
+                        # ignora quando ainda não há casos
+                        pass
+                    else:
+                        datas.append(data)
+                        conf.append(int(row['casos']) - acc_conf)
+                        acc_conf = int(row['casos'])
                 if row['obitos'] != "NA":
-                    morte = int(row['obitos'])
-                    data_mort.append(data)
-                    mortes.append(morte - acc_mort)
-                    acc_mort = morte
+                    if len(data_mort) == 0 and int(row['obitos']) == 0:
+                        pass
+                    else:
+                        morte = int(row['obitos'])
+                        data_mort.append(data)
+                        mortes.append(morte - acc_mort)
+                        acc_mort = morte
         return(datas, conf, data_mort, mortes)
 
     def completa_dados(self):
@@ -1056,16 +1063,16 @@ def plt_seade(cidades):
 
 
 if __name__ == '__main__':
-    print("Processando dados de Piracicaba.")
-    pir = Covid("Piracicaba.txt")
-    pir.atualiza_graf(save=True, atualiza_texto=True, show=False)
-    pir.graf_detalhes(salva=True, mostra=False)
-    pir.graf_fit()
-    print("Processando dados de Campinas.")
-    camp = Covid("Campinas.txt")
-    camp.atualiza_graf(save=True, atualiza_texto=True, show=False)
-    camp.graf_detalhes(salva=True, mostra=False)
-    camp.graf_fit()
+    # print("Processando dados de Piracicaba.")
+    # pir = Covid("Piracicaba.txt")
+    # pir.atualiza_graf(save=True, atualiza_texto=True, show=False)
+    # pir.graf_detalhes(salva=True, mostra=False)
+    # pir.graf_fit()
+    # print("Processando dados de Campinas.")
+    # camp = Covid("Campinas.txt")
+    # camp.atualiza_graf(save=True, atualiza_texto=True, show=False)
+    # camp.graf_detalhes(salva=True, mostra=False)
+    # camp.graf_fit()
     print("Atualizando dados do SEADE.")
     cidades = ["Campinas", "São Paulo", "Piracicaba", "Limeira",
                "Ribeirão Preto"]
