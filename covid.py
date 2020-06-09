@@ -504,40 +504,41 @@ class Covid:
         # GRÁFICO COM CASOS CONFIRMADOS E MORTES
         fig_all = self.graf_all()
         # salva figuras
+        nome = self.nome.replace(' ', '_')
         if self.arquivo:
             sufixo = ""
         else:
             sufixo = "-SEADE"
         if save:
             fig_conf.savefig("img/" + self.data[-1] + "-"
-                             + self.nome + '-novoscasos' + sufixo + '.png')
+                             + nome + '-novoscasos' + sufixo + '.png')
             fig_acc.savefig("img/" + self.data[-1] + "-"
-                            + self.nome + '-totalcasos' + sufixo + '.png')
-            fig_both.savefig("img/" + self.data[-1] + "-" + self.nome +
+                            + nome + '-totalcasos' + sufixo + '.png')
+            fig_both.savefig("img/" + self.data[-1] + "-" + nome +
                              '-casosconfirmados' + sufixo + '.png')
-            fig_mort.savefig("img/" + self.data_mort[-1] + "-" + self.nome
+            fig_mort.savefig("img/" + self.data_mort[-1] + "-" + nome
                              + '-novasmortes' + sufixo + '.png')
-            fig_acc_mort.savefig("img/" + self.data_mort[-1] + "-" + self.nome
+            fig_acc_mort.savefig("img/" + self.data_mort[-1] + "-" + nome
                                  + '-totalmortes' + sufixo + '.png')
             fig_both_mort.savefig("img/" + self.data_mort[-1] + "-"
-                                  + self.nome + '-mortes' + sufixo + '.png')
+                                  + nome + '-mortes' + sufixo + '.png')
             data = max(self.data[-1], self.data_mort[-1])
-            fig_all.savefig("img/" + data + "-" + self.nome + ''
+            fig_all.savefig("img/" + data + "-" + nome + ''
                             + sufixo + '.png')
         if atualiza_texto:
-            fig_conf.savefig("img/" + self.nome + '-novoscasos'
+            fig_conf.savefig("img/" + nome + '-novoscasos'
                              + sufixo + '.png')
-            fig_acc.savefig("img/" + self.nome + '-totalcasos'
+            fig_acc.savefig("img/" + nome + '-totalcasos'
                             + sufixo + '.png')
-            fig_both.savefig("img/" + self.nome + '-casosconfirmados'
+            fig_both.savefig("img/" + nome + '-casosconfirmados'
                              + sufixo + '.png')
-            fig_mort.savefig("img/" + self.nome + '-novasmortes'
+            fig_mort.savefig("img/" + nome + '-novasmortes'
                              + sufixo + '.png')
-            fig_acc_mort.savefig("img/" + self.nome + '-totalmortes'
+            fig_acc_mort.savefig("img/" + nome + '-totalmortes'
                                  + sufixo + '.png')
-            fig_both_mort.savefig("img/" + self.nome + '-mortes'
+            fig_both_mort.savefig("img/" + nome + '-mortes'
                                   + sufixo + '.png')
-            fig_all.savefig("img/" + self.nome + sufixo + '.png')
+            fig_all.savefig("img/" + nome + sufixo + '.png')
         if show:
             plt.show()
 
@@ -820,12 +821,13 @@ class Covid:
 
         # Salva e mostra as figuras
         if salva:
-            fig_conf.savefig("img/" + self.nome + '-det-confirmados.png')
-            fig_mort.savefig("img/" + self.nome + '-det-mortes.png')
-            fig_recu.savefig("img/" + self.nome + '-det-recuperados.png')
-            fig_m.savefig("img/" + self.nome + '-det-homens.png')
-            fig_f.savefig("img/" + self.nome + '-det-mulheres.png')
-            fig_t.savefig("img/" + self.nome + '-det-total.png')
+            nome = self.nome.replace(' ', '_')
+            fig_conf.savefig("img/" + nome + '-det-confirmados.png')
+            fig_mort.savefig("img/" + nome + '-det-mortes.png')
+            fig_recu.savefig("img/" + nome + '-det-recuperados.png')
+            fig_m.savefig("img/" + nome + '-det-homens.png')
+            fig_f.savefig("img/" + nome + '-det-mulheres.png')
+            fig_t.savefig("img/" + nome + '-det-total.png')
         if mostra:
             plt.show()
 
@@ -986,7 +988,7 @@ class Covid:
             print("Projeção dos últimos " + str(periodo) + " dias")
             fig = self.fit(periodo, proj)
             data = max(self.data[-1], self.data_mort[-1])
-            nome = self.nome
+            nome = self.nome.replace(' ', '_')
             if self.arquivo is None:
                 nome += "-SEADE"
             fig.savefig("img/" + data + "-" + nome + "-projecao-" +
@@ -1065,9 +1067,8 @@ if __name__ == '__main__':
     camp.graf_detalhes(salva=True, mostra=False)
     camp.graf_fit()
     print("Atualizando dados do SEADE.")
-    cidades = ["Campinas", "São Paulo", "Piracicaba"]
-    # Limeira dá erro nas projeções
-    # Ribeirão preto dá erro na figura com todos os dados
+    cidades = ["Campinas", "São Paulo", "Piracicaba", "Limeira",
+               "Ribeirão Preto"]
     plt_seade(cidades)
     # fig = camp.graf_detalhes(salva=False, mostra=False)
     # teste

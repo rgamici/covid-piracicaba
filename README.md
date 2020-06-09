@@ -74,6 +74,10 @@ Os gráficos podem ser conferidos [nessa página](projecao-piracicaba.md).
 * São Paulo
 
   [Mais gráficos](img-SaoPaulo.md).
+  
+* Outras cidades
+
+  [Gráficos de Projeções](img-outros.md).
 
 ## Dados do SEADE
 
@@ -84,7 +88,7 @@ Utilizando o script, é possível plotar os gráficos de qualquer cidade no esta
 ![Piracicaba-SEADE](img/Piracicaba-SEADE.png)
 ![São Paulo-SEADE](img/São_Paulo-SEADE.png)
 ![Campinas-SEADE](img/Campinas-SEADE.png)
-![Ribeirão Preto-SEADE](img/Ribeirao_Preto-SEADE.png)
+![Ribeirão Preto-SEADE](img/Ribeirão_Preto-SEADE.png)
 ![Limeira-SEADE](img/Limeira-SEADE.png)
 
 
