@@ -1063,16 +1063,16 @@ def plt_seade(cidades):
 
 
 if __name__ == '__main__':
-    # print("Processando dados de Piracicaba.")
-    # pir = Covid("Piracicaba.txt")
-    # pir.atualiza_graf(save=True, atualiza_texto=True, show=False)
-    # pir.graf_detalhes(salva=True, mostra=False)
-    # pir.graf_fit()
-    # print("Processando dados de Campinas.")
-    # camp = Covid("Campinas.txt")
-    # camp.atualiza_graf(save=True, atualiza_texto=True, show=False)
-    # camp.graf_detalhes(salva=True, mostra=False)
-    # camp.graf_fit()
+    print("Processando dados de Piracicaba.")
+    pir = Covid("Piracicaba.txt")
+    pir.atualiza_graf(save=True, atualiza_texto=True, show=False)
+    pir.graf_detalhes(salva=True, mostra=False)
+    pir.graf_fit()
+    print("Processando dados de Campinas.")
+    camp = Covid("Campinas.txt")
+    camp.atualiza_graf(save=True, atualiza_texto=True, show=False)
+    camp.graf_detalhes(salva=True, mostra=False)
+    camp.graf_fit()
     print("Atualizando dados do SEADE.")
     cidades = ["Campinas", "São Paulo", "Piracicaba", "Limeira",
                "Ribeirão Preto"]
