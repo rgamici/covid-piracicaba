@@ -172,6 +172,7 @@ q## Data   Tipo   Número   Sexo   Idade  ## Observações
 20200604   M       1       M      82 # divulgado 20200610
 20200605   P     167       -      -- # total 2465
 20200605   M       1       F      85 # divulgado 20200608
+20200605   M       1       F      87 # divulgado 20200612
 20200606   P     167       -      -- # total 2632
 20200606   M       3       -      -- # Sem dados
 20200606   M       1       M      65 # divulgado 20200608 total 103 =contagem
@@ -194,11 +195,18 @@ q## Data   Tipo   Número   Sexo   Idade  ## Observações
 20200608   M       1       M      91 # divulgado 20200609 total 116 = contagem
 20200608   M       1       F      71 # divulgado 20200610 total 120 = contagem
 20200608   M       1       M      66 # divulgado 20200610
+20200608   M       1       F      73 # divulgado 20200612
 20200609   P     165       -      -- # total 2956 (igual a contagem)
 20200609   M       1       M      65 # divulgado 20200610
 20200609   M       1       M      49 # divulgado 20200610
+20200609   M       1       M      66 # divulgado 20200612
 20200610   P     213       -      -- # total 3169 (igual a contagem)
 20200610   M       1       F      77 # divulgado 20200610
 20200610   M       1       F      63 # divulgado 20200610
+20200610   M       1       M      50 # divulgado 20200612
+20200610   M       1       M      62 # divulgado 20200612
 20200611   P     168       -      -- # total 3337 (igual a contagem)
+20200611   M       1       M      72 # divulgado 20200612
+20200612   P     198       -      -- # total 3535 (igual a contagem)
+
 
