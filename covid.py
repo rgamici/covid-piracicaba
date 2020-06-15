@@ -1077,7 +1077,6 @@ if __name__ == '__main__':
     cidades = ["Campinas", "São Paulo", "Piracicaba", "Limeira",
                "Ribeirão Preto"]
     plt_seade(cidades)
-    fig = camp.graf_detalhes(salva=False, mostra=False)
     # teste
     # pir.graf_fit()
     # plt.show()

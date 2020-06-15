@@ -1,4 +1,4 @@
-q## Data   Tipo   Número   Sexo   Idade  ## Observações
+## Data   Tipo   Número   Sexo   Idade  ## Observações
 20200313   P       1       F      22
 20200316   P       1       F      48
 20200318   P       1       F      37
@@ -6,207 +6,212 @@ q## Data   Tipo   Número   Sexo   Idade  ## Observações
 20200321   P       5       -      --
 20200324   P       1       M      62
 20200326   P       1       F      36  
-20200326   P       1       M      --   ## entre 30 e 40 anos
-20200326   P       1       M      --   ## entre 30 e 40 anos
-20200326   P       1       M      --   ## entre 30 e 40 anos
-20200326   P       1       M      --   ## entre 30 e 40 anos
 20200326   P       1       F      81  
+20200326   P       1       M      --   ## entre 30 e 40 anos
+20200326   P       1       M      --   ## entre 30 e 40 anos
+20200326   P       1       M      --   ## entre 30 e 40 anos
+20200326   P       1       M      --   ## entre 30 e 40 anos
 20200327   P       3       -      --  
 20200328   M       1       F      71
-20200330   M       1       M      86
 20200330   M       1       M      62
 20200330   M       1       M      63    ## pub. 20200420 
-20200330   P      13      -      --    ## Sem dados nos dias 28 e 29
-20200331   P       4       -      --  ## noticia: 3 casos, mas eram 32 e chegaram em 36
+20200330   M       1       M      86
+20200330   P      13       -      --    ## Sem dados nos dias 28 e 29
 20200331   M       1       F      91    
+20200331   P       4       -      --  ## noticia: 3 casos, mas eram 32 e chegaram em 36
 20200401   P       3       -      --
 20200402   P       5       -      --
-20200403   P       9       -      --
 20200403   M       1       M      71    ## Anunciada en 20200424
+20200403   P       9       -      --
 20200404   P      12       -      --
 20200405   M       1       M      69   # divulgado 20204030
 20200406   P       3       -      --
 20200407   P       2       -      --
-20200408   P      15       -      --
 20200408   M       1       F      73
+20200408   P      15       -      --
 20200409   P      14       -      --
 20200412   P       8       -      --    ## dias 10~12
-20200413   P      19       -      --
 20200413   M       1       F      89   # divulgado 20204028
+20200413   P      19       -      --
 20200414   P       6       -      --
 20200415   P       6       -      --
-20200416   P      14       -      --
-20200416   M       1       F      90
 20200416   M       1       F      71
-20200417   P      11       -      --
+20200416   M       1       F      90
+20200416   P      14       -      --
 20200417   M       1       M      82    # divulgado dia 20200425
 20200417   M       1       M      82   ## divulgado 20200514
+20200417   P      11       -      --
 20200420   M       1       M      82    # divulgado dia 20200427    
 20200420   P      14       -      --    
-20200422   P      22       -      --
+20200422   M       1       M      83 # divulgado 20200522
 20200422   M       2       -      --    ## 13 mortes (igual a contagem)
-20200422   M	   1	   M	  83 # divulgado 20200522
-20200423   P      27       -      --
+20200422   P      22       -      --
 20200423   M       1       F      63   # divulgado 20204029
+20200423   P      27       -      --
 20200424   P      16       -      -- 
-20200425   P      26       -      --
 20200425   M       1       M      58   # divulgado 20204030
-20200427   P       6       -      --    ## 274 casos (igual a contagem)
+20200425   P      26       -      --
 20200427   M       1       F      68   # divulgado 20204029
 20200427   M       1       M      83   # divulgado 20204030
-20200428   P      32       -      --
+20200427   P       6       -      --    ## 274 casos (igual a contagem)
 20200428   M       1       F      58   # divulgado 20204029
+20200428   P      32       -      --
 20200429   P      30       -      -- 
 20200430   P      11       -      --   ## Total 347 casos (igual a contagem)
+20200501   M       1       F      50   ## divulgado 20200505 (24 casos)
 20200501   M       1       M      58   ## divulgado 20200504
-20200501   M       1       F      50   ## divulgado 20200505
 20200502   M       1       F      88   ## divulgado 20200504 (22 mortes igual)
 20200503   M       1       M      20   ## divulgado 20200505
 20200504   P      56       -      --   ## sem dados no feriado e fds (tot: 403)
-20200505   P      15       -      --   ## Total 418 casos (igual a contagem)
 20200505   M       1       M      56   ## Total 25 mortes (igual a contagem)
+20200505   P      15       -      --   ## Total 418 casos (igual a contagem)
 20200506   P       5       -      --   ## Total 423 casos (igual a contagem)
 20200507   P      26       -      --   ## Total 449 casos (igual a contagem)
+20200508   M       1       M      71 # divulgado 20200522
 20200508   M       1       M      76   ## Total 26 mortes (igual a contagem)
 20200508   P      48       -      --   ## Total 497 casos (igual a contagem)
-20200508   M	   1	   M	  71 # divulgado 20200522
 20200509   P      64       -      --   ## Total 561 (portal covid 1500)
 20200510   M       1       F      28   ## divulgado 20200511 (total 27)
 20200510   M       1       M      68 # divulgado 20200515
 20200510   M       1       M      97 # divulgado 20200518
-20200511   P      16       -      --   ## Total 577 (igual a contagem)
-20200511   M       1       M      81   ## divulgado 20200513 (total 28)
 20200511   M       1       F      67   ## divulgado 20200514
-20200512   P      45       -      --   ## Total 622 (igual a contagem)
+20200511   M       1       M      81   ## divulgado 20200513 (total 28)
+20200511   P      16       -      --   ## Total 577 (igual a contagem)
 20200512   M       1       F      53 # divulgado 20200518
-20200513   P      47       -      --   ## Total 669 (igual a contagem)
+20200512   P      45       -      --   ## Total 622 (igual a contagem)
 20200513   M       1       M      79 # divulgado 20200515
-20200514   M       1       M      69   ## Total 31 mortes (igual a contagem)
-20200514   P      45       -      --   ## Total 714 (igual a contagem)
-20200514   M       1       M      70 # divulgado 20200515 (total 34 = contagem)
+20200513   P      47       -      --   ## Total 669 (igual a contagem)
 20200514   M       1       F      36 # divulgado 20200516
-20200515   P      61       -      -- # total 775 (igual a contagem)
-20200515   M       1       F      74 # divulgado 20200516 (total 36 = contagem)
+20200514   M       1       M      69   ## Total 31 mortes (igual a contagem)
+20200514   M       1       M      70 # divulgado 20200515 (total 34 = contagem)
+20200514   P      45       -      --   ## Total 714 (igual a contagem)
 20200515   M       1       F      54 # divulgado 20200518
+20200515   M       1       F      67 # divulgado 20200523
+20200515   M       1       F      74 # divulgado 20200516 (total 36 = contagem)
 20200515   M       1       F      86 # divulgado 20200518 (total 38 - contagem)
 20200515   M       1       M      79 # divulgado 20200519 (43ª morte)
-20200515   M       1	   F	  67 # divulgado 20200523
-20200516   P      78       -      -- # Total 853 casos (igual a contagem)
+20200515   P      61       -      -- # total 775 (igual a contagem)
+20200516   M       1       F      85 # divulgado 20200522
 20200516   M       1       M      61 # divulgado 20200518
-20200516   M	   1	   F	  85 # divulgado 20200522
-20200517   P      35       -      -- # Total 888 casos (igual a contagem)
+20200516   P      78       -      -- # Total 853 casos (igual a contagem)
 20200517   M       1       F      65 # divulgado 20200518 (total 42 = contagem)
 20200517   M       1       F      85 # divulgado 20200526
-20200518   P      15       -      -- # Total 903 casos (igual a contagem)
+20200517   P      35       -      -- # Total 888 casos (igual a contagem)
 20200518   M       1       F      90 # divulgado 20200526
-20200519   P      64       -      -- # Total 967 casos (igual a contagem)
+20200518   P      15       -      -- # Total 903 casos (igual a contagem)
+20200519   M       1       F     103 # divulgado 20200522
+20200519   M       1       M      41 # divulgado 20200522
 20200519   M       1       M      65 # divulgado 20200520 (total 44 = contagem)
-20200519   M	   1	   M	  41 # divulgado 20200522
-20200519   M	   1	   F	 103 # divulgado 20200522
-20200520   P      48       -      -- # Total 1015 (igual a contagem)
-20200520   M	   1	   F	  74 # divulgado 20200522
-20200520   M       9       H      64 # divulgado 20200527
-20200520   M       1       H      70 # divulgado 20200526
+20200519   P      64       -      -- # Total 967 casos (igual a contagem)
+20200520   M       1       F      74 # divulgado 20200522
 20200520   M       1       F      90 # divulgado 20200603
-20200521   P      57       -      -- # Total 1072 (igual a contagem)
-20200521   M	   1	   F	  73 # divulgado 20200522 total 51 = contagem
-20200521   M       1	   M	  72 # divulgado 20200523 total 53 = contagem
-20200521   M       9       M      59 # divulgado 20200527
-20200521   M       1       M      59 #divulgado 20200605
+20200520   M       1       M      64 # divulgado 20200527
+20200520   M       1       M      70 # divulgado 20200526
+20200520   P      48       -      -- # Total 1015 (igual a contagem)
 20200521   M       1       F      55 #divulgado 20200605
-20200522   P      61       -      -- # Total 1133 (igual a contagem)
+20200521   M       1       F      73 # divulgado 20200522 total 51 = contagem
+20200521   M       1       M      59 # divulgado 20200527
+20200521   M       1       M      59 #divulgado 20200605
+20200521   M       1       M      72 # divulgado 20200523 total 53 = contagem
+20200521   P      57       -      -- # Total 1072 (igual a contagem)
 20200522   M       1       M      68 #divulgado 20200605
-20200523   P      50       -      -- # Total 1183 (igual a contagem)
+20200522   P      61       -      -- # Total 1133 (igual a contagem)
 20200523   M       1       F      87 # divulgado 20200526
-20200523   M       1       H      91 # divulgado 20200526
-20200523   M       1       M      72 #divulgado 20200604
 20200523   M       1       F      89 #divulgado 20200604
-20200524   M       9       H      62 # divulgado 20200527 total 65 = contagem
+20200523   M       1       M      72 #divulgado 20200604
+20200523   M       1       M      91 # divulgado 20200526
+20200523   P      50       -      -- # Total 1183 (igual a contagem)
 20200524   M       1       F      87 # divulgado 20200526
-20200525   P      10       -      -- # inclui FDS
+20200524   M       1       M      62 # divulgado 20200527 total 65 = contagem
 20200525   M       1       -      -- # não divulgada
-20200525   M       1       M      81 # divulgado 20200526
 20200525   M       1       F      86 # divulgado 20200526
-20200526   P      66       -      -- # 
-20200526   M       1       M      90 # divulgado 20200530
+20200525   M       1       M      81 # divulgado 20200526
+20200525   P      10       -      -- # inclui FDS
 20200526   M       1       M      82 #divulgado 20200605
-20200527   P      28       -      -- # Total 1287
-20200527   M       1       M      71 # divulgado 20200528
-20200527   M       1       M      75 # divulgado 20200528 (total 67 =contagem)
+20200526   M       1       M      90 # divulgado 20200530
+20200526   P      66       -      -- # 
 20200527   M       1       F      74 # divulgado 20200529
 20200527   M       1       F      82 # divulgado 20200529
+20200527   M       1       M      71 # divulgado 20200528
 20200527   M       1       M      74 # divulgado 20200530
+20200527   M       1       M      75 # divulgado 20200528 (total 67 =contagem)
+20200527   P      28       -      -- # Total 1287
 20200528   P      66       -      -- # Total 1353 (igual a contagem)
-20200529   P      81       -      -- # total 1434 (igual a contagem)
+20200529   M       1       F      64 # divulgado 20200601
+20200529   M       1       F      74 # divulgado 20200601
 20200529   M       1       F      83 # divulgado 20200530
 20200529   M       1       F      87 # divulgado 20200530 tot 73 =contagem
 20200529   M       1       M      69 # divulgado 20200601
-20200529   M       1       F      74 # divulgado 20200601
-20200529   M       1       F      64 # divulgado 20200601
+20200529   P      81       -      -- # total 1434 (igual a contagem)
+20200530   M       1       M      90 # divulgado 20200601
 20200530   P     136       -      -- # Total 2570 (igual a contagem)
-20200530   M       1       H      90 # divulgado 20200601
-20200531   P      44       -      --
+20200531   M       1       F      33 #divulgado 20200604
 20200531   M       1       F      57 # divulgado 20200601 (total 78)
+20200531   M       1       F      63 # divulgado 20200608
+20200531   M       1       F      68 #divulgado 20200604
 20200531   M       1       F      82 # divulgado 20200602
 20200531   M       1       M      72 #divulgado 20200604
-20200531   M       1       F      68 #divulgado 20200604
-20200531   M       1       F      33 #divulgado 20200604
-20200531   M       1       F      63 # divulgado 20200608
-20200601   P     121       -      -- # Total 1735 (igual a contagem)
-20200601   M       1       F      93 # divulgado 20200602 (total 80 =contagem)
-20200601   M       1       F      90 # divulgado 20200603
+20200531   P      44       -      --
 20200601   M       1       F      85 # divulgado 20200608
-20200601   M       1       F      93 # divulgado 20200610
-20200602   P     134       -      -- # total 1869 (igual a contagem)
-20200602   M       1       M      68 # divulgado 20200603
-20200602   M       1       F      86 #divulgado 20200604
+20200601   M       1       F      90 # divulgado 20200603
+20200601   M       1       F      93 # divulgado 20200602 (total 80 =contagem)
+20200601   M       1       F      93 # divulgado 20200611
+20200601   P     121       -      -- # Total 1735 (igual a contagem)
 20200602   M       1       F      05 #divulgado 20200604
-20200603   P     291       -      --
+20200602   M       1       F      86 #divulgado 20200604
+20200602   M       1       M      68 # divulgado 20200603
+20200602   P     134       -      -- # total 1869 (igual a contagem)
 20200603   M       1       F      96 # divulgado 20200603 (total 84 =contagem)
 20200603   M       1       M      70 #divulgado 20200604 (total 92 = contagem)
 20200603   M       1       M      83 #divulgado 20200605 (total 97 = contagem)
 20200603   M       1       M      89 # divulgado 20200610
-20200604   P     138       -      --
+20200603   P     291       -      --
 20200604   M       1       M      68 # divulgado 20200609
 20200604   M       1       M      81 # divulgado 20200609
-20200604   M       1       M      82 # divulgado 20200610
-20200605   P     167       -      -- # total 2465
+20200604   M       1       M      82 # divulgado 20200611
+20200604   P     138       -      --
 20200605   M       1       F      85 # divulgado 20200608
 20200605   M       1       F      87 # divulgado 20200612
-20200606   P     167       -      -- # total 2632
-20200606   M       3       -      -- # Sem dados
-20200606   M       1       M      65 # divulgado 20200608 total 103 =contagem
-20200606   M       1       M      37 # divulgado 20200608
-20200606   M       1       M      72 # divulgado 20200608
+20200605   P     167       -      -- # total 2465
 20200606   M       1       F      71 # divulgado 20200609
+20200606   M       1       F      83 # divulgado 20200611
+20200606   M       1       M      37 # divulgado 20200608
+20200606   M       1       M      65 # divulgado 20200608 total 103 =contagem
 20200606   M       1       M      68 # divulgado 20200609
-20200606   M       1       F      83 # divulgado 20200610
-20200607   M       1       F      86 # divulgado 20200608 total 107 = contagem
+20200606   M       1       M      72 # divulgado 20200608
+20200606   M       3       -      -- # Sem dados
+20200606   P     167       -      -- # total 2632
 20200607   M       1       F      67 # divulgado 20200609
 20200607   M       1       F      83 # divulgado 20200609
 20200607   M       1       F      84 # divulgado 20200610
+20200607   M       1       F      86 # divulgado 20200608 total 107 = contagem
+20200607   M       1       M      45 # divulgado 20200611
+20200607   M       1       M      56 # divulgado 20200611
 20200607   M       1       M      77 # divulgado 20200610
-20200607   M       1       M      45 # divulgado 20200610
-20200607   M       1       M      56 # divulgado 20200610
-20200608   P      60       -      -- # total 2692
-20200608   P      99       -      -- # total 2791
+20200608   M       1       F      71 # divulgado 20200610 total 120 = contagem
+20200608   M       1       F      73 # divulgado 20200612
+20200608   M       1       M      66 # divulgado 20200611
 20200608   M       1       M      76 # divulgado 20200609
 20200608   M       1       M      79 # divulgado 20200609
 20200608   M       1       M      91 # divulgado 20200609 total 116 = contagem
-20200608   M       1       F      71 # divulgado 20200610 total 120 = contagem
-20200608   M       1       M      66 # divulgado 20200610
-20200608   M       1       F      73 # divulgado 20200612
-20200609   P     165       -      -- # total 2956 (igual a contagem)
-20200609   M       1       M      65 # divulgado 20200610
-20200609   M       1       M      49 # divulgado 20200610
+20200608   P      60       -      -- # total 2692
+20200608   P      99       -      -- # total 2791
+20200609   M       1       M      49 # divulgado 20200611
+20200609   M       1       M      65 # divulgado 20200611
 20200609   M       1       M      66 # divulgado 20200612
-20200610   P     213       -      -- # total 3169 (igual a contagem)
-20200610   M       1       F      77 # divulgado 20200610
-20200610   M       1       F      63 # divulgado 20200610
+20200609   P     165       -      -- # total 2956 (igual a contagem)
+20200610   M       1       F      63 # divulgado 20200611
+20200610   M       1       F      77 # divulgado 20200611
 20200610   M       1       M      50 # divulgado 20200612
 20200610   M       1       M      62 # divulgado 20200612
-20200611   P     168       -      -- # total 3337 (igual a contagem)
+20200610   P     213       -      -- # total 3169 (igual a contagem)
 20200611   M       1       M      72 # divulgado 20200612
+20200611   P     168       -      -- # total 3337 (igual a contagem)
+20200612   M       1       F      68 # divulgado 20200615 (total 149 =contagem)
 20200612   P     198       -      -- # total 3535 (igual a contagem)
+20200613   P     145       -      -- # total 3680 (igual a contagem)
+20200614   P     211       -      -- # total 3891 (igual a contagem)
+20200614   M      12       -      -- # 20200615 (sem info)
+20200615   P     197       -      -- # total 3988 (igual a contagem)
 
-
+# total 149 mortes - 20200615
