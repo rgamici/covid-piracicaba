@@ -257,9 +257,18 @@
 20200616   M       1       F      51 # divulgado 20200618
 20200616   M       1       F      62 # divulgado 20200618
 20200616   M       1       M      83 # divulgado 20200618
-20200617   P     334       -      -- # total 4796 (igual a contagem)
+20200616   M       1       F      53 # divulgado 20200619
+20200617   P     334       -      -- # total 4726 (igual a contagem)
 20200617   M       1       F      97 # divulgado 20200618
 20200617   M       1       M      60 # divulgado 20200618 total 194 =contagem
+20200617   M       1       F      97 # divulgado 20200619
+20200617   M       1       M      62 # divulgado 20200619
+20200617   M       1       M      63 # divulgado 20200619
+20200617   M       1       M      77 # divulgado 20200619
+20200617   M       1       M      81 # divulgado 20200619
+20200618   M       1       F      65 # divulgado 20200619
+20200618   M       1       M      28 # divulgado 20200619
+20200618   M       1       M      84 # divulgado 20200619 total 203 =contagem
+20200619   P     502       -      -- # total 5228 (igual a contagem)
 
-# total 194 mortes - 20200618
 
