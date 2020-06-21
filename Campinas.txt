@@ -266,9 +266,17 @@
 20200617   M       1       M      63 # divulgado 20200619
 20200617   M       1       M      77 # divulgado 20200619
 20200617   M       1       M      81 # divulgado 20200619
+20200617   M       1       M      60 # divulgado 20200620
 20200618   M       1       F      65 # divulgado 20200619
 20200618   M       1       M      28 # divulgado 20200619
 20200618   M       1       M      84 # divulgado 20200619 total 203 =contagem
+20200618   M       1       F      60 # divulgado 20200620
+20200618   M       1       F      91 # divulgado 20200620
+20200618   M       1       M      42 # divulgado 20200620
 20200619   P     502       -      -- # total 5228 (igual a contagem)
+20200619   M       1       F      70 # divulgado 20200620
+20200619   M       1       M      63 # divulgado 20200620 total 209 = contagem 
+20200620   P     173       -      -- # total 5401 (igual a contagem)
+
 
 

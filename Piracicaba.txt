@@ -1372,3 +1372,9 @@
 20200619   P      54       M      --
 20200619   P      18       F      -- # total 1601 (contagem 1605)
 20200619   M       1       M      66 # total 67 mortes (igual a contagem)
+20200620   P      35       M      --
+20200620   P      37       F      -- # total 1673 (contagem 1677)
+20200620   M       1       M      81
+20200620   M       1       F      68
+20200620   M       1       F      70 # total 70 mortes (igual a contagem)
+
