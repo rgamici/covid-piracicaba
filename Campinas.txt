@@ -187,6 +187,7 @@
 20200606   P     167       -      -- # total 2632
 20200606   M       1       F      87 # divulgado 20200617
 20200606   M       1       F      87 # divulgado 20200618
+20200606   M       1       M      63 # divulgado 20200623
 20200607   M       1       F      67 # divulgado 20200609
 20200607   M       1       F      83 # divulgado 20200609
 20200607   M       1       F      84 # divulgado 20200610
@@ -216,6 +217,7 @@
 20200610   P     213       -      -- # total 3169 (igual a contagem)
 20200611   M       1       M      72 # divulgado 20200612
 20200611   P     168       -      -- # total 3337 (igual a contagem)
+20200611   M       1       F      69 # divulgado 20200623
 20200612   M       1       F      68 # divulgado 20200615 (total 149 =contagem)
 20200612   P     198       -      -- # total 3535 (igual a contagem)
 20200612   M       1       M      45 # divulgado 20200616
@@ -234,6 +236,7 @@
 20200613   M       1       F      76 # divulgado 20200617
 20200613   M       1       M      84 # divulgado 20200617
 20200613   M       1       F      88 # divulgado 20200618
+20200613   M       1       F      90 # divulgado 20200623
 20200614   P     211       -      -- # total 3891 (igual a contagem)
 20200614   M      12       -      -- # 20200615 (sem info)
 20200614   M       1       M      59 # divulgado 20200616
@@ -245,6 +248,7 @@
 20200615   M       1       M      74 # divulgado 20200617
 20200615   M       1       M      85 # divulgado 20200617
 20200615   M       1       M      88 # divulgado 20200617
+20200615   M       1       M      76 # divulgado 20200623
 20200616   P     404       -      -- # total 4392 (igual a contagem)
 20200616   M       1       F      37 # divulgado 20200617
 20200616   M       1       F      45 # divulgado 20200617
@@ -268,6 +272,8 @@
 20200617   M       1       M      77 # divulgado 20200619
 20200617   M       1       M      81 # divulgado 20200619
 20200617   M       1       M      60 # divulgado 20200620
+20200617   M       1       M      70 # divulgado 20200623
+20200617   M       1       M      93 # divulgado 20200623
 20200618   M       1       F      65 # divulgado 20200619
 20200618   M       1       M      28 # divulgado 20200619
 20200618   M       1       M      84 # divulgado 20200619 total 203 =contagem
@@ -275,11 +281,30 @@
 20200618   M       1       F      91 # divulgado 20200620
 20200618   M       1       M      42 # divulgado 20200620
 20200618   M       1       F      63 # divulgado 20200621
+20200618   M       1       F      30 # divulgado 20200623
+20200618   M       1       F      53 # divulgado 20200623
+20200618   M       1       F      65 # divulgado 20200623
+20200618   M       1       F      71 # divulgado 20200623
+20200618   M       1       F      78 # divulgado 20200623
+20200618   M       1       M      60 # divulgado 20200623
 20200619   P     502       -      -- # total 5228 (igual a contagem)
 20200619   M       1       F      70 # divulgado 20200620
 20200619   M       1       M      63 # divulgado 20200620 total 209 = contagem 
+20200619   M       1       F      83 # divulgado 20200623
+20200619   M       1       M      77 # divulgado 20200623
+20200619   M       1       M      83 # divulgado 20200623
 20200620   P     173       -      -- # total 5401 (igual a contagem)
 20200620   M       1       M      72 # divulgado 20200621
 20200620   M       1       F      67 # divulgado 20200621 total 213 = contagem
+20200620   M       1       F      44 # divulgado 20200623
+20200620   M       1       F      88 # divulgado 20200623
+20200620   M       1       M      67 # divulgado 20200623
+20200621   M       1       F      57 # divulgado 20200623
+20200621   M       1       F      59 # divulgado 20200623
+20200621   M       1       F      91 # divulgado 20200623
+20200621   M       1       M      56 # divulgado 20200623
+20200621   M       1       M      78 # divulgado 20200623 total 226 =contagem
 20200622   P     350       -      -- # total 5751 (igual a contagem)
+20200623   P     258       -      -- # total 6009 (igual a contagem)
+
 
