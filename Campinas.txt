@@ -174,6 +174,7 @@
 20200604   M       1       M      82 # divulgado 20200611
 20200604   P     138       -      --
 20200604   M       1       M      72 # divulgado 20200616
+20200604   M       1       F      81 # divulgado 20200624
 20200605   M       1       F      85 # divulgado 20200608
 20200605   M       1       F      87 # divulgado 20200612
 20200605   P     167       -      -- # total 2465
@@ -218,6 +219,8 @@
 20200611   M       1       M      72 # divulgado 20200612
 20200611   P     168       -      -- # total 3337 (igual a contagem)
 20200611   M       1       F      69 # divulgado 20200623
+20200611   M       1       M      46 # divulgado 20200624
+20200611   M       1       M      48 # divulgado 20200624
 20200612   M       1       F      68 # divulgado 20200615 (total 149 =contagem)
 20200612   P     198       -      -- # total 3535 (igual a contagem)
 20200612   M       1       M      45 # divulgado 20200616
@@ -229,6 +232,7 @@
 20200612   M       1       M      64 # divulgado 20200617
 20200612   M       1       M      85 # divulgado 20200617
 20200612   M       1       F      90 # divulgado 20200618
+20200612   M       1       F      91 # divulgado 20200624 total 253 =contagem
 20200613   P     145       -      -- # total 3680 (igual a contagem)
 20200613   M       1       M      81 # divulgado 20200616
 20200613   M       1       M      88 # divulgado 20200616
@@ -263,6 +267,8 @@
 20200616   M       1       M      83 # divulgado 20200618
 20200616   M       1       F      53 # divulgado 20200619
 20200616   M       1       F      78 # divulgado 20200621
+20200616   M       1       F      86 # divulgado 20200624
+20200616   M       1       M      80 # divulgado 20200624
 20200617   P     334       -      -- # total 4726 (igual a contagem)
 20200617   M       1       F      97 # divulgado 20200618
 20200617   M       1       M      60 # divulgado 20200618 total 194 =contagem
@@ -274,6 +280,7 @@
 20200617   M       1       M      60 # divulgado 20200620
 20200617   M       1       M      70 # divulgado 20200623
 20200617   M       1       M      93 # divulgado 20200623
+20200617   M       1       M      81 # divulgado 20200624
 20200618   M       1       F      65 # divulgado 20200619
 20200618   M       1       M      28 # divulgado 20200619
 20200618   M       1       M      84 # divulgado 20200619 total 203 =contagem
@@ -293,18 +300,29 @@
 20200619   M       1       F      83 # divulgado 20200623
 20200619   M       1       M      77 # divulgado 20200623
 20200619   M       1       M      83 # divulgado 20200623
+20200619   M       1       F      69 # divulgado 20200624
 20200620   P     173       -      -- # total 5401 (igual a contagem)
 20200620   M       1       M      72 # divulgado 20200621
 20200620   M       1       F      67 # divulgado 20200621 total 213 = contagem
 20200620   M       1       F      44 # divulgado 20200623
 20200620   M       1       F      88 # divulgado 20200623
 20200620   M       1       M      67 # divulgado 20200623
+20200620   M       1       M      77 # divulgado 20200624
 20200621   M       1       F      57 # divulgado 20200623
 20200621   M       1       F      59 # divulgado 20200623
 20200621   M       1       F      91 # divulgado 20200623
 20200621   M       1       M      56 # divulgado 20200623
-20200621   M       1       M      78 # divulgado 20200623 total 226 =contagem
+20200621   M       1       M      78 # divulgado 20200623 total 236 =contagem
+20200621   M       1       M      72 # divulgado 20200624
+20200621   M       1       M      77 # divulgado 20200624
 20200622   P     350       -      -- # total 5751 (igual a contagem)
+20200622   M       1       M      63 # divulgado 20200624
+20200622   M       1       M      70 # divulgado 20200624
+20200622   M       1       M      72 # divulgado 20200624
 20200623   P     258       -      -- # total 6009 (igual a contagem)
+20200623   M       1       F      85 # divulgado 20200624
+20200623   M       1       M      52 # divulgado 20200624
+20200623   M       1       M      89 # divulgado 20200624
+20200624   P     406       -      -- # total 6415 (igual a contagem)
 
 
