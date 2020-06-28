@@ -128,6 +128,7 @@
 20200525   M       1       F      86 # divulgado 20200526
 20200525   M       1       M      81 # divulgado 20200526
 20200525   P      10       -      -- # inclui FDS
+20200525   M       1       F      89 # divulgado 20200627
 20200526   M       1       M      82 #divulgado 20200605
 20200526   M       1       M      90 # divulgado 20200530
 20200526   P      66       -      -- # 
@@ -211,6 +212,7 @@
 20200609   M       1       M      65 # divulgado 20200611
 20200609   M       1       M      66 # divulgado 20200612
 20200609   P     165       -      -- # total 2956 (igual a contagem)
+20200609   M       1       M      60 # divulgado 20200627
 20200610   M       1       F      63 # divulgado 20200611
 20200610   M       1       F      77 # divulgado 20200611
 20200610   M       1       M      50 # divulgado 20200612
@@ -299,6 +301,7 @@
 20200618   M       1       F      78 # divulgado 20200623
 20200618   M       1       M      60 # divulgado 20200623
 20200618   M       1       M      83 # divulgado 20200625
+20200618   M       1       F      84 # divulgado 20200627
 20200619   P     502       -      -- # total 5228 (igual a contagem)
 20200619   M       1       F      70 # divulgado 20200620
 20200619   M       1       M      63 # divulgado 20200620 total 209 = contagem 
@@ -306,6 +309,7 @@
 20200619   M       1       M      77 # divulgado 20200623
 20200619   M       1       M      83 # divulgado 20200623
 20200619   M       1       F      69 # divulgado 20200624
+20200619   M       1       F      82 # divulgado 20200626
 20200620   P     173       -      -- # total 5401 (igual a contagem)
 20200620   M       1       M      72 # divulgado 20200621
 20200620   M       1       F      67 # divulgado 20200621 total 213 = contagem
@@ -316,6 +320,7 @@
 20200620   M       1       F      82 # divulgado 20200625
 20200620   M       1       F      88 # divulgado 20200625
 20200620   M       1       M      51 # divulgado 20200625
+20200620   M       1       F      70 # divulgado 20200627
 20200621   M       1       F      57 # divulgado 20200623
 20200621   M       1       F      59 # divulgado 20200623
 20200621   M       1       F      91 # divulgado 20200623
@@ -323,6 +328,7 @@
 20200621   M       1       M      78 # divulgado 20200623 total 236 =contagem
 20200621   M       1       M      72 # divulgado 20200624
 20200621   M       1       M      77 # divulgado 20200624
+20200621   M       1       M      61 # divulgado 20200626
 20200622   P     350       -      -- # total 5751 (igual a contagem)
 20200622   M       1       M      63 # divulgado 20200624
 20200622   M       1       M      70 # divulgado 20200624
@@ -342,8 +348,19 @@
 20200623   M       1       M      77 # divulgado 20200625
 20200624   P     406       -      -- # total 6415 (igual a contagem)
 20200624   M       1       M      72 # divulgado 20200625 (total 271 =contagem)
+20200624   M       1       M      70 # divulgado 20200626
+20200624   M       1       F      76 # divulgado 20200627
+20200624   M       1       M      64 # divulgado 20200627
+20200624   M       1       M      79 # divulgado 20200627
 20200625   P     295       -      -- # total 6710 (igual a contagem)
-
-
-
-
+20200625   M       1       F      92 # divulgado 20200626
+20200625   M       1       M      72 # divulgado 20200626
+20200625   M       1       M      92 # divulgado 20200626 total 277 =contagem
+20200625   M       1       F      77 # divulgado 20200627
+20200625   M       1       F      86 # divulgado 20200627
+20200625   M       1       M      43 # divulgado 20200627
+20200626   P     317       -      -- # total 7027 (igual a contagem)
+20200626   M       1       F      96 # divulgado 20200627
+20200626   M       1       M      71 # divulgado 20200627
+20200626   M       1       M      72 # divulgado 20200627
+20200626   M       1       M      79 # divulgado 20200627 total 291 =contagem
