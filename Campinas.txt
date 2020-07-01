@@ -156,6 +156,7 @@
 20200531   M       1       M      72 #divulgado 20200604
 20200531   P      44       -      --
 20200531   M       1       F      87 # divulgado 20200616
+20200531   M       1       F      74 # divulgado 20200630
 20200601   M       1       F      85 # divulgado 20200608
 20200601   M       1       F      90 # divulgado 20200603
 20200601   M       1       F      93 # divulgado 20200602 (total 80 =contagem)
@@ -310,6 +311,7 @@
 20200619   M       1       M      83 # divulgado 20200623
 20200619   M       1       F      69 # divulgado 20200624
 20200619   M       1       F      82 # divulgado 20200626
+20200619   M       1       M      75 # divulgado 20200630
 20200620   P     173       -      -- # total 5401 (igual a contagem)
 20200620   M       1       M      72 # divulgado 20200621
 20200620   M       1       F      67 # divulgado 20200621 total 213 = contagem
@@ -329,12 +331,16 @@
 20200621   M       1       M      72 # divulgado 20200624
 20200621   M       1       M      77 # divulgado 20200624
 20200621   M       1       M      61 # divulgado 20200626
+20200621   M       1       M      61 # divulgado 20200630
+20200621   M       1       M      91 # divulgado 20200630
 20200622   P     350       -      -- # total 5751 (igual a contagem)
 20200622   M       1       M      63 # divulgado 20200624
 20200622   M       1       M      70 # divulgado 20200624
 20200622   M       1       M      72 # divulgado 20200624
 20200622   M       1       F      90 # divulgado 20200625
 20200622   M       1       M      82 # divulgado 20200625
+20200622   M       1       F      79 # divulgado 20200630
+20200622   M       1       F      89 # divulgado 20200630
 20200623   P     258       -      -- # total 6009 (igual a contagem)
 20200623   M       1       F      85 # divulgado 20200624
 20200623   M       1       M      52 # divulgado 20200624
@@ -346,6 +352,8 @@
 20200623   M       1       M      43 # divulgado 20200625
 20200623   M       1       M      70 # divulgado 20200625
 20200623   M       1       M      77 # divulgado 20200625
+20200623   M       1       F      67 # divulgado 20200630
+20200623   M       1       M      83 # divulgado 20200630
 20200624   P     406       -      -- # total 6415 (igual a contagem)
 20200624   M       1       M      72 # divulgado 20200625 (total 271 =contagem)
 20200624   M       1       M      70 # divulgado 20200626
@@ -360,14 +368,28 @@
 20200625   M       1       F      77 # divulgado 20200627
 20200625   M       1       F      86 # divulgado 20200627
 20200625   M       1       M      43 # divulgado 20200627
+20200625   M       1       M      51 # divulgado 20200630
 20200626   M       1       M      77 # divulgado 20200629
 20200626   P     317       -      -- # total 7027 (igual a contagem)
 20200626   M       1       F      96 # divulgado 20200627
 20200626   M       1       M      71 # divulgado 20200627
 20200626   M       1       M      72 # divulgado 20200627
 20200626   M       1       M      79 # divulgado 20200627 total 291 =contagem
+20200626   M       1       F      88 # divulgado 20200630
+20200626   M       1       M      55 # divulgado 20200630
 20200627   M       1       M      76 # divulgado 20200629
 20200627   M       1       M      78 # divulgado 20200629
+20200627   M       1       M      22 # divulgado 20200630
+20200627   M       1       M      79 # divulgado 20200630
+20200627   M       1       M      82 # divulgado 20200630
 20200628   M       1       M      76 # divulgado 20200629 total 296 =contagem
+20200628   M       1       F      53 # divulgado 20200630
+20200628   M       1       F      75 # divulgado 20200630
+20200628   M       1       F      96 # divulgado 20200630
+20200628   M       1       M      64 # divulgado 20200630
+20200628   M       1       M      66 # divulgado 20200630
 20200629   P     821       -      -- # total 7848 (igual a contagem)
+20200629   M       1       M      65 # divulgado 20200630
+20200630   P     438       -      -- # total 8286 (igual a contagem)
+20200630   M       1       M      63 # divulgado 20200630 # total 317 =contagem
 
