@@ -399,11 +399,13 @@
 20200628   M       1       M      64 # divulgado 20200630
 20200628   M       1       M      66 # divulgado 20200630
 20200628   M       1       M      76 # divulgado 20200629 total 296 =contagem
+20200628   M       1       H      70 # divulgado 20200706
 20200629   M       1       M      63  # divulgado 20200701
 20200629   M       1       M      65 # divulgado 20200630
 20200629   P     821       -      -- # total 7848 (igual a contagem)
 20200629   M       1       H      84 # divulgado 20200702
 20200629   M       1       M      77 # divulgado 20200702
+20200629   M       1       M      64 # divulgado 20200706
 20200630   M       1       H      82  # divulgado 20200701
 20200630   M       1       M      63 # divulgado 20200630 # total 317 =contagem
 20200630   P     438       -      -- # total 8286 (igual a contagem)
@@ -417,6 +419,8 @@
 20200630   M       1       M      79 # divulgado 20200702
 20200630   M       1       M      91 # divulgado 20200702
 20200630   M       1       H      82 # divulgado 20200703
+20200630   M       1       H      68 # divulgado 20200706
+20200630   M       1       M      60 # divulgado 20200706
 20200701   P     323       -      -- # total 8609 (igual a contagem)
 20200701   M       1       H      40 # divulgado 20200702
 20200701   M       1       H      77 # divulgado 20200702
@@ -433,4 +437,15 @@
 20200702   M       1       H      72 # divulgado 20200703
 20200702   M       1       M      63 # divulgado 20200703 # total 355 =contagem
 20200703   P     313       -      -- # total 9308 (igual a contagem)
+20200703   M       1       H      61 # divulgado 20200706
+20200703   M       1       H      68 # divulgado 20200706
+20200703   M       1       H      79 # divulgado 20200706
+20200703   M       1       M      62 # divulgado 20200706
+20200704   M       7       -      -- # Sem dados
+20200704   P     302       -      -- # 
+20200704   M       1       H      68 # divulgado 20200706
+20200704   M       1       M      87 # divulgado 20200706
+20200705   M       1       M      45 # divulgado 20200706 total 373 =contagem
+20200706   P     340       -      -- # Total 9950 (igual a contagem)
+
 
