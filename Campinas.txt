@@ -376,6 +376,7 @@
 20200625   M       1       M      72 # divulgado 20200626
 20200625   M       1       M      92 # divulgado 20200626 total 277 =contagem
 20200625   P     295       -      -- # total 6710 (igual a contagem)
+20200625   M       1       M      99 # divulgado 20200709
 20200626   M       1       F      88 # divulgado 20200630
 20200626   M       1       F      96 # divulgado 20200627
 20200626   M       1       H      65  # divulgado 20200701
@@ -406,6 +407,7 @@
 20200628   M       1       M      76 # divulgado 20200629 total 296 =contagem
 20200628   M       1       H      70 # divulgado 20200706
 20200628   M       1       H      73 # divulgado 20200707
+20200628   M       1       H      79 # divulgado 20200709
 20200629   M       1       M      63  # divulgado 20200701
 20200629   M       1       M      65 # divulgado 20200630
 20200629   P     821       -      -- # total 7848 (igual a contagem)
@@ -414,6 +416,7 @@
 20200629   M       1       M      64 # divulgado 20200706
 20200629   M       1       H      00 # divulgado 20200708
 20200629   M       1       H      81 # divulgado 20200708
+20200629   M       1       H      77 # divulgado 20200709
 20200630   M       1       H      82  # divulgado 20200701
 20200630   M       1       M      63 # divulgado 20200630 # total 317 =contagem
 20200630   P     438       -      -- # total 8286 (igual a contagem)
@@ -441,6 +444,7 @@
 20200701   M       1       H      89 # divulgado 20200707
 20200701   M       1       H      89 # divulgado 20200708
 20200701   M       1       M      84 # divulgado 20200708
+20200701   M       1       H      88 # divulgado 20200709
 20200702   P     386       -      -- # total 8995 (igual a contagem)
 20200702   M       1       H      60 # divulgado 20200702 Total 343 =contagem
 20200702   M       1       H      65 # divulgado 20200703
@@ -449,12 +453,14 @@
 20200702   M       1       H      72 # divulgado 20200703
 20200702   M       1       M      63 # divulgado 20200703 # total 355 =contagem
 20200702   M       1       H      60 # divulgado 20200708
+20200702   M       1       M      78 # divulgado 20200709
 20200703   P     313       -      -- # total 9308 (igual a contagem)
 20200703   M       1       H      61 # divulgado 20200706
 20200703   M       1       H      68 # divulgado 20200706
 20200703   M       1       H      79 # divulgado 20200706
 20200703   M       1       M      62 # divulgado 20200706
 20200703   M       1       H      90 # divulgado 20200708
+20200703   M       1       M      81 # divulgado 20200709
 20200704   M       7       -      -- # Sem dados
 20200704   P     302       -      -- # 
 20200704   M       1       H      68 # divulgado 20200706
@@ -472,12 +478,25 @@
 20200705   M       1       M      64 # divulgado 20200707
 20200705   M       1       M      80 # divulgado 20200707 total 384 =contagem
 20200705   M       1       H      51 # divulgado 20200708
+20200705   M       1       H      73 # divulgado 20200709
 20200706   P     340       -      -- # Total 9950 (igual a contagem)
 20200706   M       1       H      65 # divulgado 20200708
 20200706   M       1       H      69 # divulgado 20200708
 20200706   M       1       M      78 # divulgado 20200708
+20200706   M       1       H      80 # divulgado 20200709
+20200706   M       1       H      85 # divulgado 20200709
 20200707   P     524       -      -- # Total 10474 (igual a contagem)
 20200707   M       1       H      70 # divulgado 20200708
 20200707   M       1       M      92 # divulgado 20200708 total 404 =contagem
+20200707   M       1       H      68 # divulgado 20200709
+20200707   M       1       H      84 # divulgado 20200709
+20200707   M       1       H      97 # divulgado 20200709
+20200707   M       1       M      76 # divulgado 20200709
+20200707   M       1       M      78 # divulgado 20200709
 20200708   P     379       -      -- # Total 10853 (igual a contagem)
+20200708   M       1       H      65 # divulgado 20200709
+20200708   M       1       M      65 # divulgado 20200709
+20200708   M       1       M      89 # divulgado 20200709 total 421 =contagem
+20200709   P     339       -      -- # Total 11192 (igual a contagem)
+
 
