@@ -410,6 +410,7 @@
 20200628   M       1       H      73 # divulgado 20200707
 20200628   M       1       H      79 # divulgado 20200709
 20200628   M       1       H      79 # divulgado 20200710
+20200628   M       1       M      71 # divulgado 20200713
 20200629   M       1       M      63  # divulgado 20200701
 20200629   M       1       M      65 # divulgado 20200630
 20200629   P     821       -      -- # total 7848 (igual a contagem)
@@ -436,6 +437,7 @@
 20200630   M       1       H      68 # divulgado 20200706
 20200630   M       1       M      60 # divulgado 20200706
 20200630   M       1       H      90 # divulgado 20200707
+20200630   M       1       M      66 # divulgado 20200713
 20200701   P     323       -      -- # total 8609 (igual a contagem)
 20200701   M       1       H      40 # divulgado 20200702
 20200701   M       1       H      77 # divulgado 20200702
@@ -479,6 +481,7 @@
 20200704   M       1       M      64 # divulgado 20200708
 20200704   M       1       M      87 # divulgado 20200708
 20200704   M       1       H      64 # divulgado 20200710
+20200704   M       1       M      64 # divulgado 20200713
 20200705   M       1       M      45 # divulgado 20200706 total 373 =contagem
 20200705   M       1       M      64 # divulgado 20200707
 20200705   M       1       M      80 # divulgado 20200707 total 384 =contagem
@@ -503,6 +506,8 @@
 20200707   M       1       M      45 # divulgado 20200710
 20200707   M       1       M      68 # divulgado 20200710
 20200707   M       1       H      76 # divulgado 20200711
+20200707   M       1       H      32 # divulgado 20200713
+20200707   M       1       H      77 # divulgado 20200713
 20200708   P     379       -      -- # Total 10853 (igual a contagem)
 20200708   M       1       H      65 # divulgado 20200709
 20200708   M       1       M      65 # divulgado 20200709
@@ -518,8 +523,17 @@
 20200709   M       1       M      82 # divulgado 20200710
 20200709   M       1       H      65 # divulgado 20200711
 20200709   M       1       M      82 # divulgado 20200711
+20200709   M       1       M      85 # divulgado 20200713
 20200710   P     344       -      -- # Total 11536 (igual a contagem)
 20200710   M       1       H      40 # divulgado 20200711
 20200710   M       1       M      67 # divulgado 20200711
 20200710   M       1       M      74 # divulgado 20200711 # total 444 =contagem
+20200710   M       1       H      75 # divulgado 20200713
 20200711   P      23       -      -- # Total 11559 (igual a contagem)
+20200711   M       1       H      37 # divulgado 20200713
+20200711   M       1       H      42 # divulgado 20200713
+20200711   M       1       H      72 # divulgado 20200713
+20200711   M       1       M      85 # divulgado 20200713 total 455 =contagem
+20200713   P     492       -      -- # Total 11961 (igual a contagem)
+
+
