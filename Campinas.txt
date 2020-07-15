@@ -450,6 +450,7 @@
 20200701   M       1       H      89 # divulgado 20200708
 20200701   M       1       M      84 # divulgado 20200708
 20200701   M       1       H      88 # divulgado 20200709
+20200701   M       1       H      70 # divulgado 20200714
 20200702   P     386       -      -- # total 8995 (igual a contagem)
 20200702   M       1       H      60 # divulgado 20200702 Total 343 =contagem
 20200702   M       1       H      65 # divulgado 20200703
@@ -467,6 +468,7 @@
 20200703   M       1       M      62 # divulgado 20200706
 20200703   M       1       H      90 # divulgado 20200708
 20200703   M       1       M      81 # divulgado 20200709
+20200703   M       1       M      65 # divulgado 20200714
 20200704   M       7       -      -- # Sem dados
 20200704   P     302       -      -- # 
 20200704   M       1       H      68 # divulgado 20200706
@@ -487,6 +489,7 @@
 20200705   M       1       M      80 # divulgado 20200707 total 384 =contagem
 20200705   M       1       H      51 # divulgado 20200708
 20200705   M       1       H      73 # divulgado 20200709
+20200705   M       1       M      73 # divulgado 20200714
 20200706   P     340       -      -- # Total 9950 (igual a contagem)
 20200706   M       1       H      65 # divulgado 20200708
 20200706   M       1       H      69 # divulgado 20200708
@@ -494,6 +497,7 @@
 20200706   M       1       H      80 # divulgado 20200709
 20200706   M       1       H      85 # divulgado 20200709
 20200706   M       1       H      81 # divulgado 20200710
+20200706   M       1       H      37 # divulgado 20200714
 20200707   P     524       -      -- # Total 10474 (igual a contagem)
 20200707   M       1       H      70 # divulgado 20200708
 20200707   M       1       M      92 # divulgado 20200708 total 404 =contagem
@@ -524,16 +528,38 @@
 20200709   M       1       H      65 # divulgado 20200711
 20200709   M       1       M      82 # divulgado 20200711
 20200709   M       1       M      85 # divulgado 20200713
+20200709   M       1       M      67 # divulgado 20200714
+20200709   M       1       M      71 # divulgado 20200714
 20200710   P     344       -      -- # Total 11536 (igual a contagem)
 20200710   M       1       H      40 # divulgado 20200711
 20200710   M       1       M      67 # divulgado 20200711
 20200710   M       1       M      74 # divulgado 20200711 # total 444 =contagem
 20200710   M       1       H      75 # divulgado 20200713
+20200710   M       1       H      75 # divulgado 20200714
+20200710   M       1       H      82 # divulgado 20200714
 20200711   P      23       -      -- # Total 11559 (igual a contagem)
 20200711   M       1       H      37 # divulgado 20200713
 20200711   M       1       H      42 # divulgado 20200713
 20200711   M       1       H      72 # divulgado 20200713
 20200711   M       1       M      85 # divulgado 20200713 total 455 =contagem
+20200711   M       1       H      44 # divulgado 20200714
+20200711   M       1       H      52 # divulgado 20200714
+20200711   M       1       H      54 # divulgado 20200714
+20200711   M       1       H      72 # divulgado 20200714
+20200711   M       1       H      87 # divulgado 20200714
+20200712   M       1       H      50 # divulgado 20200714
+20200712   M       1       H      58 # divulgado 20200714
+20200712   M       1       H      69 # divulgado 20200714
+20200712   M       1       H      74 # divulgado 20200714
+20200712   M       1       M      34 # divulgado 20200714
+20200712   M       1       M      63 # divulgado 20200714
+20200712   M       1       M      81 # divulgado 20200714
 20200713   P     492       -      -- # Total 11961 (igual a contagem)
-
+20200713   M       1       H      45 # divulgado 20200714
+20200713   M       1       H      67 # divulgado 20200714
+20200713   M       1       H      70 # divulgado 20200714
+20200713   M       1       M      61 # divulgado 20200714
+20200713   M       1       M      70 # divulgado 20200714
+20200713   M       1       M      88 # divulgado 20200714
+20200714   P     286       -      -- # Total 12247 (igual a contagem)
 
