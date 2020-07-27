@@ -701,3 +701,8 @@
 20200723   M       1       H      77 # divulgado 20200724
 20200723   M       1       M      81 # divulgado 20200724 # total 618 =contagem
 20200724   P     667       -      -- # Total 15629 (igual a contagem)
+20200724   M      21       -      -- # não especificadas
+20200725   P      52       -      -- # Total 15681
+20200725   M       1       F      80 # divulgado 20200727
+20200725   M       1       M      75 # divulgado 20200727 # total 641 =contagem
+20200727   P     582       -      -- # Total 16263 (igual a contagem)
