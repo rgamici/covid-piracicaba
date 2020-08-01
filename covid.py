@@ -216,11 +216,12 @@ class Covid:
                 if i - j >= 0:  # ajuste no início
                     if dias[i-j] > dia - 7:
                         # garante que pegas os úlitmos 7 dias e não 7 pontos
-                        soma += dados[j]
+                        soma += dados[i-j]
                         count += 1
             if count == 0:
                 count = 1
             media[i] = soma/count
+        print(media)
         return(media)
 
     def plot_acc_conf(self, x, y, cor, datas, ylabel, fig=None, add=False):
