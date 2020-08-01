@@ -70,7 +70,11 @@ class Covid:
         self.dias_mort_corr = []
         for dia in self.dias_mort:
             self.dias_mort_corr.append(dia + self.diff_morte)
+        # calcula média dos últimos 7 dias
+        self.med_conf = self.media(self.dias, self.conf)
+        self.med_mort = self.media(self.dias_mort, self.mortes)
         self.limpa_datas_marcadas()
+        # se usa dados detalhados (não SEADE), cria detalhamentos
         if dados_seade == "":
             self.det_conf = self.scrap_pessoal("P")
             self.det_mort = self.scrap_pessoal("M")
@@ -196,6 +200,25 @@ class Covid:
                 dia_conv = conv
         return(dias)
 
+    def media(self, dias, dados):
+        """ Calcula a média dos últimos 7 dias
+        Parametros:
+        -----------
+        dias: lista de inteiros com índices para as datas
+        dados: contagem de casos ou mortes
+        """
+        media = []
+        for dia in dias:
+            soma = 0
+            count = 0
+            for i in range(max(0, dia - 6), min(dia + 1, len(dados))):
+                soma += dados[i]
+                count += 1
+            if count == 0:
+                count = 1
+            media.insert(dia, soma/count)
+        return(media)
+
     def plot_acc_conf(self, x, y, cor, datas, ylabel, fig=None, add=False):
         """ Plota o número total de casos
 
@@ -254,7 +277,8 @@ class Covid:
         # fig.tight_layout()  # otherwise the right y-label is slightly clipped
         return(fig)
 
-    def plot_conf(self, x, y, cor, datas, ylabel, fig=None, add=False):
+    def plot_conf(self, x, y, cor, y_med, cor_med, datas, ylabel,
+                  fig=None, add=False):
         """ Plota o número de novos casos
 
         Se nenhuma figura for especificada, cria uma novas.
@@ -265,6 +289,8 @@ class Covid:
         x: lista de ints
         y: lista de ints
         cor: str
+        y_med: lista de médias
+        cor_med : cor da linha das médias
         datas: lista de str
             Rótulos que serão exibidos no eixo x
         ylabel: str
@@ -285,6 +311,7 @@ class Covid:
         #
         ax.set_ylabel(ylabel, color=cor)
         ax.bar(x, y, color=cor)
+        ax.plot(x, y_med, color=cor_med)
         ax.tick_params(axis='y', labelcolor=cor)
         ax.yaxis.set_major_locator(ticker.MaxNLocator(integer=True))
         if add:
@@ -396,6 +423,7 @@ class Covid:
 
     def graf_conf(self):
         fig_conf = self.plot_conf(self.dias, self.conf, 'tab:blue',
+                                  self.med_conf, 'tab:purple',
                                   self.data, 'Novos Casos por Dia')
         fig_add_title(fig_conf, "Novos Casos de Coronavírus em " + self.nome)
         self.fig_add_fonte(fig_conf)
@@ -412,7 +440,8 @@ class Covid:
         fig_both = self.plot_acc_conf(self.dias, self.acc_conf,
                                       'tab:red', self.data, "Total de Casos")
         self.marcar_datas(fig_both, self.dias, self.acc_conf, self.data)
-        self.plot_conf(self.dias, self.conf, 'tab:blue', self.data,
+        self.plot_conf(self.dias, self.conf, 'tab:blue',
+                       self.med_conf, 'tab:purple', self.data,
                        'Novos Casos por Dia', fig_both, True)
         fig_add_title(fig_both, "Casos Confirmados de Coronavírus em "
                       + self.nome)
@@ -421,6 +450,7 @@ class Covid:
 
     def graf_mort(self):
         fig_mort = self.plot_conf(self.dias_mort, self.mortes, 'tab:orange',
+                                  self.med_mort, 'tab:brown',
                                   self.data_mort, 'Mortes por dia')
         fig_add_title(fig_mort, "Número de Mortes por Coronavírus em "
                       + self.nome)
@@ -442,7 +472,8 @@ class Covid:
                                            "Total de Mortes")
         self.marcar_datas(fig_both_mort, self.dias_mort, self.acc_mort,
                           self.data_mort)
-        self.plot_conf(self.dias_mort, self.mortes, 'tab:blue', self.data_mort,
+        self.plot_conf(self.dias_mort, self.mortes, 'tab:orange',
+                       self.med_mort, 'tab:brown', self.data_mort,
                        'Novas Mortes por Dia', fig_both_mort, True)
         fig_add_title(fig_both_mort, "Mortes por Coronavírus em "
                       + self.nome)
@@ -462,10 +493,11 @@ class Covid:
         self.marcar_datas(fig_all, self.dias_mort_corr, self.acc_mort,
                           self.data_mort)
         # ### adiciona os dados de novos casos e mortes por dia
-        self.plot_conf(self.dias, self.conf, 'tab:blue', self.data,
+        self.plot_conf(self.dias, self.conf, 'tab:blue',
+                       self.med_conf, 'tab:purple', self.data,
                        '', fig_all, True)
         self.plot_conf(self.dias_mort_corr, self.mortes, 'tab:orange',
-                       self.data_mort,
+                       self.med_mort, 'tab:brown', self.data_mort,
                        'Novos Casos e Mortes por Dia', fig_all, False)
         # ### ajustes e título
         self.ajusta_eixo_x(fig_all, self.dias + self.dias_mort_corr,
@@ -1078,5 +1110,4 @@ if __name__ == '__main__':
                "Ribeirão Preto"]
     plt_seade(cidades)
     # teste
-    # pir.graf_fit()
-    # plt.show()
+    # pir.atualiza_graf(show=True)
