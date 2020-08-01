@@ -207,16 +207,20 @@ class Covid:
         dias: lista de inteiros com índices para as datas
         dados: contagem de casos ou mortes
         """
-        media = []
-        for dia in dias:
+        media = [0] * len(dias)
+        for i in range(len(dias)):
+            dia = dias[i]
             soma = 0
             count = 0
-            for i in range(max(0, dia - 6), min(dia + 1, len(dados))):
-                soma += dados[i]
-                count += 1
+            for j in range(7):
+                if i - j >= 0:  # ajuste no início
+                    if dias[i-j] > dia - 7:
+                        # garante que pegas os úlitmos 7 dias e não 7 pontos
+                        soma += dados[j]
+                        count += 1
             if count == 0:
                 count = 1
-            media.insert(dia, soma/count)
+            media[i] = soma/count
         return(media)
 
     def plot_acc_conf(self, x, y, cor, datas, ylabel, fig=None, add=False):
